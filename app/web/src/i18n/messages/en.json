@@ -1,0 +1,94 @@
+{
+  "nav": {
+    "home":           "Home",
+    "accommodations": "Accommodations",
+    "amenities":      "Amenities",
+    "experiences":    "Experiences",
+    "gallery":        "Gallery",
+    "about":          "About",
+    "contact":        "Contact",
+    "blog":           "Blog",
+    "book":           "Book Now",
+    "login":          "Sign In",
+    "logout":         "Sign Out",
+    "myBookings":     "My Bookings",
+    "profile":        "Profile"
+  },
+  "hero": {
+    "headline":    "Along the Athi River",
+    "subheadline": "A luxury nature retreat in the heart of Thika East, Kenya",
+    "cta":         "Reserve Your Stay",
+    "scrollDown":  "Discover More"
+  },
+  "booking": {
+    "checkIn":       "Check-in",
+    "checkOut":      "Check-out",
+    "guests":        "Guests",
+    "adults":        "Adults",
+    "children":      "Children",
+    "searchRooms":   "Search Rooms",
+    "available":     "Available",
+    "unavailable":   "Unavailable",
+    "perNight":      "per night",
+    "total":         "Total",
+    "subtotal":      "Subtotal",
+    "vat":           "VAT (16%)",
+    "nights":        "{count, plural, one {# night} other {# nights}}",
+    "bookNow":       "Book Now",
+    "confirmBooking":"Confirm Booking",
+    "specialRequests":"Special requests (optional)"
+  },
+  "rooms": {
+    "viewDetails":   "View Details",
+    "maxOccupancy":  "Up to {count} guests",
+    "size":          "{size}m²",
+    "amenities":     "Amenities",
+    "availability":  "Check Availability",
+    "from":          "From"
+  },
+  "auth": {
+    "email":           "Email address",
+    "password":        "Password",
+    "firstName":       "First name",
+    "lastName":        "Last name",
+    "phone":           "Phone number (optional)",
+    "signIn":          "Sign in",
+    "signUp":          "Create account",
+    "forgotPassword":  "Forgot password?",
+    "resetPassword":   "Reset password",
+    "sendResetLink":   "Send reset link",
+    "noAccount":       "Don't have an account?",
+    "hasAccount":      "Already have an account?",
+    "orContinueWith":  "or continue with"
+  },
+  "common": {
+    "loading":     "Loading…",
+    "error":       "Something went wrong",
+    "retry":       "Try again",
+    "cancel":      "Cancel",
+    "confirm":     "Confirm",
+    "save":        "Save",
+    "back":        "Back",
+    "next":        "Next",
+    "close":       "Close",
+    "learnMore":   "Learn more",
+    "viewAll":     "View all",
+    "required":    "Required",
+    "kes":         "KES",
+    "usd":         "USD"
+  },
+  "footer": {
+    "tagline":     "A luxury nature retreat along Kenya's Athi River",
+    "contact":     "Contact",
+    "address":     "Thika East, Kiambu County, Kenya",
+    "phone":       "+254 700 000 000",
+    "email":       "hello@rockyriverresort.co.ke",
+    "copyright":   "© {year} Rocky River Resort. All rights reserved.",
+    "privacy":     "Privacy Policy",
+    "terms":       "Terms of Service"
+  },
+  "meta": {
+    "title":       "Rocky River Resort — Thika East, Kenya",
+    "description": "Luxury nature resort along the Athi River. Elegant rooms, world-class dining, and authentic Kenyan experiences."
+  }
+}

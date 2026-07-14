@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-forest:  #1C3A2B;
+    --color-earth:   #2C2418;
+    --color-gold:    #C8A85A;
+    --color-cream:   #F5F0E8;
+    --color-sand:    #8a7a65;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-cream text-earth font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  ::selection {
+    background-color: #C8A85A33;
+    color: #1C3A2B;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #F5F0E8; }
+  ::-webkit-scrollbar-thumb { background: #C8A85A; border-radius: 3px; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gold text-earth font-medium px-6 py-3 rounded transition-all
+           hover:bg-gold-dark hover:shadow-md active:scale-95;
+  }
+
+  .btn-outline {
+    @apply border border-gold text-gold font-medium px-6 py-3 rounded transition-all
+           hover:bg-gold hover:text-earth active:scale-95;
+  }
+
+  .section-padding {
+    @apply px-4 py-16 sm:px-6 lg:px-8 lg:py-24;
+  }
+
+  .container-narrow {
+    @apply max-w-5xl mx-auto;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}

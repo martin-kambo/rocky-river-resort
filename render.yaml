@@ -1,0 +1,69 @@
+# Rocky River Resort — Render deployment blueprint
+# Docs: https://render.com/docs/blueprint-spec
+# Connect repo in Render dashboard → New → Blueprint → point to this file.
+
+services:
+  - type: web
+    name: rrr-api
+    runtime: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: ./apps/api
+    plan: starter                        # $7/mo — always-on, no cold starts
+    region: frankfurt                    # closest to Kenya
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    startCommand: npx prisma migrate deploy && node dist/main
+    envVars:
+      - key:   NODE_ENV
+        value: production
+      - key:   PORT
+        value: 4000
+      - key:   DATABASE_URL
+        fromDatabase:
+          name: rrr-postgres
+          property: connectionString
+      - key:   CORS_ORIGIN
+        sync: false                      # set in Render dashboard
+      - key:   JWT_SECRET
+        generateValue: true
+      - key:   JWT_REFRESH_SECRET
+        generateValue: true
+      - key:   JWT_ACCESS_TTL
+        value: 900
+      - key:   JWT_REFRESH_TTL
+        value: 604800
+      - key:   RESEND_API_KEY
+        sync: false
+      - key:   EMAIL_FROM
+        value: "Rocky River Resort <hello@rockyriverresort.co.ke>"
+      - key:   STRIPE_SECRET_KEY
+        sync: false
+      - key:   STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key:   MPESA_ENVIRONMENT
+        value: production
+      - key:   MPESA_CONSUMER_KEY
+        sync: false
+      - key:   MPESA_CONSUMER_SECRET
+        sync: false
+      - key:   MPESA_SHORTCODE
+        sync: false
+      - key:   MPESA_PASSKEY
+        sync: false
+      - key:   MPESA_CALLBACK_URL
+        value: https://api.rockyriverresort.co.ke/api/v1/payments/webhook/mpesa
+      - key:   CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key:   CLOUDINARY_API_KEY
+        sync: false
+      - key:   CLOUDINARY_API_SECRET
+        sync: false
+      - key:   NEXT_PUBLIC_BASE_URL
+        value: https://rockyriverresort.co.ke
+
+databases:
+  - name: rrr-postgres
+    databaseName: rocky_river_resort
+    user: rrr_user
+    plan: starter                        # $7/mo — 1 GB RAM, 10 GB storage, daily backups
+    region: frankfurt

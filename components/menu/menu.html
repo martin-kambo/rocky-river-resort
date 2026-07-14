@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Rocky River Resort — River Table Menu. Order fresh Kenyan cuisine to your room or table. Delivered via WhatsApp.">
+<title>River Table Menu — Rocky River Resort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & ROOT ── */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ivory:#F7F2E8;--cream:#EFE8D5;--sand:#E5D9C0;
+  --sage:#3A5C45;--sage-mid:#2C4636;--sage-deep:#1A2E22;
+  --river:#26707F;--river-mid:#3A95A8;--river-light:#72BFD0;--river-pale:#C5E8F0;
+  --gold:#C49840;--gold-warm:#E0B858;--gold-pale:#F5E4B8;
+  --dusk:#C4724A;--ember:#E8A060;
+  --dark:#0C1610;--dark-mid:#121E17;--dark-surface:#182218;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',sans-serif;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --ease-in-out:cubic-bezier(0.45,0,0.55,1);
+  --cart-w:400px;
+}
+html{scroll-behavior:smooth;overflow-x:hidden;font-size:16px}
+body{font-family:var(--sans);background:var(--ivory);color:var(--sage-deep);overflow-x:hidden;cursor:none}
+::selection{background:rgba(196,152,64,.25);color:var(--sage-deep)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--dark)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ── CUSTOM CURSOR ── */
+#cursor{
+  position:fixed;width:10px;height:10px;border-radius:50%;
+  background:var(--sage);pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .25s var(--ease-out),height .25s var(--ease-out),background .25s;
+  mix-blend-mode:multiply;
+}
+#cursor-trail{
+  position:fixed;width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(58,92,69,.3);pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:width .35s,height .35s;
+}
+body.on-dark #cursor{background:var(--gold-warm);mix-blend-mode:screen}
+body.on-dark #cursor-trail{border-color:rgba(224,184,88,.25)}
+
+/* ── NAVIGATION ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:1.8rem 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:padding .5s var(--ease-out),background .5s,border .5s;
+}
+#nav.scrolled{
+  background:rgba(247,242,232,.92);
+  backdrop-filter:blur(20px);
+  padding:1rem 5%;
+  border-bottom:1px solid rgba(196,152,64,.2);
+}
+.logo{
+  font-family:var(--serif);font-size:1.25rem;font-weight:400;
+  letter-spacing:.06em;color:var(--sage-deep);text-decoration:none;
+  display:flex;flex-direction:column;line-height:1.1;
+}
+.logo-main{font-weight:600}
+.logo-sub{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:300;font-family:var(--sans)}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sage-mid);text-decoration:none;transition:color .3s;font-weight:300;
+}
+.nav-links a:hover{color:var(--sage)}
+.nav-links a.active{color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px}
+.nav-book{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--sage);color:var(--ivory);border:none;
+  padding:.65rem 1.7rem;cursor:pointer;text-decoration:none;display:inline-block;
+  transition:background .35s,transform .2s;font-weight:400;
+}
+.nav-book:hover{background:var(--sage-deep);transform:translateY(-1px)}
+
+/* ── MENU HERO ── */
+#menu-hero{
+  position:relative;height:48vh;min-height:340px;
+  display:flex;align-items:flex-end;justify-content:flex-start;
+  overflow:hidden;background:var(--dark);
+  padding:0 5% 4rem;
+}
+.mh-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,var(--sage-deep) 0%,var(--dark-mid) 55%,var(--dark) 100%);
+}
+/* SVG scene inside hero */
+.mh-scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.mh-grad{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to right,rgba(12,22,16,.9) 0%,rgba(12,22,16,.4) 60%,transparent 100%),
+    linear-gradient(to top,rgba(12,22,16,.7) 0%,transparent 50%);
+}
+.mh-content{position:relative;z-index:5}
+.mh-eyebrow{
+  font-family:var(--sans);font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem;font-weight:400;
+}
+.mh-eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--gold);flex-shrink:0}
+.mh-title{
+  font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.2rem);
+  font-weight:300;color:var(--ivory);line-height:1.08;letter-spacing:-.015em;margin-bottom:.6rem;
+}
+.mh-title em{font-style:italic;color:var(--gold-warm)}
+.mh-sub{
+  font-family:var(--sans);font-size:.88rem;color:rgba(247,242,232,.55);
+  font-weight:300;line-height:1.7;max-width:440px;
+}
+
+/* ── MENU NAV STRIP ── */
+#cat-nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--sage-deep);
+  border-bottom:1px solid rgba(196,152,64,.15);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;
+  transition:top .3s;
+}
+/* offset when main nav is present */
+.cat-tabs{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.cat-tabs::-webkit-scrollbar{display:none}
+.cat-tab{
+  font-family:var(--sans);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(247,242,232,.45);padding:1.1rem 1.5rem;cursor:pointer;
+  border-bottom:2px solid transparent;white-space:nowrap;
+  transition:color .3s,border-color .3s;font-weight:300;background:none;border-top:none;border-left:none;border-right:none;
+}
+.cat-tab:hover{color:rgba(247,242,232,.8)}
+.cat-tab.active{color:var(--gold-warm);border-bottom-color:var(--gold-warm)}
+.cat-right{display:flex;align-items:center;gap:1rem;flex-shrink:0}
+.cart-trigger{
+  display:flex;align-items:center;gap:.55rem;
+  font-family:var(--sans);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(247,242,232,.5);cursor:pointer;padding:.8rem 0;
+  transition:color .3s;background:none;border:none;
+  position:relative;
+}
+.cart-trigger:hover{color:var(--gold-warm)}
+.cart-trigger svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+.cart-badge{
+  position:absolute;top:-4px;right:-8px;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--gold);color:var(--dark);
+  font-family:var(--sans);font-size:.58rem;font-weight:500;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(0);transition:opacity .25s var(--ease-out),transform .25s var(--ease-out);
+}
+.cart-badge.show{opacity:1;transform:scale(1)}
+
+/* ── MAIN LAYOUT ── */
+#menu-body{
+  max-width:1280px;margin:0 auto;padding:4.5rem 5% 8rem;
+}
+
+/* ── SECTION HEADS ── */
+.sec-head{margin-bottom:2.8rem}
+.eyebrow{
+  font-family:var(--sans);font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem;font-weight:400;
+}
+.eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--gold);flex-shrink:0}
+.sec-title{
+  font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.9rem);
+  font-weight:300;line-height:1.1;letter-spacing:-.015em;color:var(--sage-deep);
+}
+.sec-title em{font-style:italic;color:var(--river)}
+
+/* ── MENU GRID ── */
+.menu-category{margin-bottom:5rem;scroll-margin-top:120px}
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:1.2rem;
+}
+
+/* ── MENU CARD ── */
+.menu-card{
+  background:var(--cream);
+  border:1px solid rgba(58,92,69,.1);
+  position:relative;overflow:hidden;
+  transition:transform .4s var(--ease-out),box-shadow .4s var(--ease-out);
+  cursor:pointer;
+  display:flex;flex-direction:column;
+}
+.menu-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 50px rgba(12,22,16,.12);
+}
+.menu-card-img{
+  width:100%;aspect-ratio:16/10;overflow:hidden;position:relative;flex-shrink:0;
+}
+.menu-card-img svg{width:100%;height:100%;display:block;transition:transform .7s var(--ease-out)}
+.menu-card:hover .menu-card-img svg{transform:scale(1.05)}
+.menu-card-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(12,22,16,.45) 0%,transparent 55%);
+}
+.menu-tag{
+  position:absolute;top:.85rem;left:.85rem;
+  font-family:var(--sans);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;
+  background:var(--sage);color:var(--ivory);padding:.28rem .75rem;font-weight:400;
+}
+.menu-tag.spicy{background:var(--dusk)}
+.menu-tag.popular{background:var(--gold);color:var(--dark)}
+.menu-tag.veg{background:var(--river-mid);color:var(--ivory)}
+
+.menu-card-body{padding:1.3rem 1.4rem 1.5rem;display:flex;flex-direction:column;flex:1}
+.menu-card-name{
+  font-family:var(--serif);font-size:1.25rem;font-weight:400;
+  color:var(--sage-deep);margin-bottom:.4rem;line-height:1.2;
+}
+.menu-card-desc{
+  font-family:var(--sans);font-size:.8rem;color:var(--sage-mid);
+  font-weight:300;line-height:1.7;flex:1;margin-bottom:1.1rem;
+}
+.menu-card-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:.9rem;border-top:1px solid rgba(58,92,69,.1);
+  margin-top:auto;
+}
+.menu-card-price{
+  font-family:var(--serif);font-size:1.4rem;font-weight:300;color:var(--sage-deep);
+}
+.menu-card-price small{font-family:var(--sans);font-size:.62rem;color:var(--sage-mid);margin-left:.2rem}
+.add-btn{
+  display:flex;align-items:center;gap:.5rem;
+  font-family:var(--sans);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sage);border:1px solid rgba(58,92,69,.3);
+  padding:.5rem 1rem;cursor:pointer;background:transparent;
+  transition:all .3s var(--ease-out);font-weight:400;
+}
+.add-btn:hover,.menu-card:hover .add-btn{
+  background:var(--sage);color:var(--ivory);border-color:var(--sage);
+}
+.add-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+/* State: item already in cart */
+.add-btn.in-cart{
+  background:var(--gold);color:var(--dark);border-color:var(--gold);
+}
+
+/* ── QTY STEPPER (visible when in cart) ── */
+.qty-row{
+  display:flex;align-items:center;gap:0;
+  border:1px solid rgba(58,92,69,.2);overflow:hidden;
+  opacity:0;max-width:0;
+  transition:opacity .3s,max-width .3s var(--ease-out);
+}
+.qty-row.show{opacity:1;max-width:140px}
+.qty-btn{
+  width:30px;height:30px;background:none;border:none;
+  color:var(--sage-mid);font-size:1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s;font-family:var(--sans);
+}
+.qty-btn:hover{background:var(--sage);color:var(--ivory)}
+.qty-num{
+  min-width:28px;text-align:center;font-family:var(--serif);font-size:1rem;
+  color:var(--sage-deep);font-weight:300;border-left:1px solid rgba(58,92,69,.15);
+  border-right:1px solid rgba(58,92,69,.15);line-height:30px;
+}
+
+/* ── FEATURED / HERO CARD ── (spans full row or 2 cols) */
+.menu-card.featured{
+  grid-column:span 2;flex-direction:row;
+}
+.menu-card.featured .menu-card-img{
+  width:45%;aspect-ratio:auto;flex-shrink:0;
+}
+.menu-card.featured .menu-card-body{padding:2rem 1.8rem}
+.menu-card.featured .menu-card-name{font-size:1.55rem}
+@media(max-width:860px){
+  .menu-card.featured{grid-column:span 1;flex-direction:column}
+  .menu-card.featured .menu-card-img{width:100%;aspect-ratio:16/10}
+}
+
+/* ── DIVIDER ── */
+.gold-divider{
+  width:44px;height:1px;background:var(--gold);margin:1rem 0 1.8rem;
+}
+
+/* ── ALLERGEN / INFO ROW ── */
+.menu-card-meta{
+  display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.8rem;
+}
+.meta-tag{
+  font-family:var(--sans);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.2rem .6rem;border:1px solid rgba(58,92,69,.18);color:var(--sage-mid);font-weight:300;
+}
+
+/* ── DIETARY ICONS ── */
+.dietary{
+  display:flex;gap:.35rem;align-items:center;margin-bottom:.7rem;
+}
+.d-icon{
+  font-family:var(--sans);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.18rem .55rem;font-weight:400;
+}
+.d-veg{background:rgba(58,149,168,.12);color:var(--river-mid)}
+.d-spicy{background:rgba(196,114,74,.12);color:var(--dusk)}
+.d-gf{background:rgba(196,152,64,.1);color:var(--gold)}
+
+/* ── EMPTY STATE ── */
+.menu-empty{
+  text-align:center;padding:4rem 2rem;
+  font-family:var(--serif);font-size:1.3rem;font-weight:300;
+  color:rgba(26,46,34,.3);font-style:italic;
+}
+
+/* ════════════════════════════════
+   CART DRAWER
+════════════════════════════════ */
+#cart-overlay{
+  position:fixed;inset:0;background:rgba(12,22,16,.5);
+  z-index:2000;opacity:0;pointer-events:none;
+  transition:opacity .4s var(--ease-out);
+  backdrop-filter:blur(4px);
+}
+#cart-overlay.open{opacity:1;pointer-events:all}
+
+#cart-drawer{
+  position:fixed;top:0;right:0;bottom:0;
+  width:var(--cart-w);max-width:100vw;
+  background:var(--dark-mid);
+  z-index:2001;
+  transform:translateX(100%);
+  transition:transform .5s var(--ease-out);
+  display:flex;flex-direction:column;
+  border-left:1px solid rgba(196,152,64,.1);
+}
+#cart-drawer.open{transform:translateX(0)}
+
+/* Drawer header */
+.cart-header{
+  padding:1.8rem 1.8rem 1.4rem;
+  border-bottom:1px solid rgba(196,152,64,.1);
+  display:flex;align-items:flex-start;justify-content:space-between;
+  flex-shrink:0;
+}
+.cart-header-left .eyebrow{color:var(--gold-warm);margin-bottom:.5rem}
+.cart-header-left .eyebrow::before{background:var(--gold-warm)}
+.cart-title{
+  font-family:var(--serif);font-size:1.8rem;font-weight:300;
+  color:var(--ivory);line-height:1.1;
+}
+.cart-close{
+  background:none;border:none;cursor:pointer;
+  color:rgba(247,242,232,.35);padding:.3rem;
+  transition:color .25s;flex-shrink:0;margin-top:.2rem;
+}
+.cart-close:hover{color:var(--ivory)}
+.cart-close svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5}
+
+/* Drawer items list */
+.cart-items{
+  flex:1;overflow-y:auto;padding:1.4rem 1.8rem;
+  scrollbar-width:thin;scrollbar-color:rgba(196,152,64,.2) transparent;
+}
+.cart-items::-webkit-scrollbar{width:3px}
+.cart-items::-webkit-scrollbar-thumb{background:rgba(196,152,64,.2)}
+
+/* Cart empty state */
+.cart-empty{
+  height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1rem;
+  text-align:center;padding:2rem;
+}
+.cart-empty-icon{
+  width:52px;height:52px;border-radius:50%;
+  border:1px solid rgba(196,152,64,.2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:.5rem;
+}
+.cart-empty-icon svg{width:22px;height:22px;stroke:rgba(196,152,64,.4);fill:none;stroke-width:1.5}
+.cart-empty h3{
+  font-family:var(--serif);font-size:1.3rem;font-weight:300;
+  font-style:italic;color:rgba(247,242,232,.4);
+}
+.cart-empty p{
+  font-family:var(--sans);font-size:.75rem;color:rgba(247,242,232,.2);
+  font-weight:300;line-height:1.6;
+}
+
+/* Individual cart line item */
+.cart-item{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:.95rem 0;border-bottom:1px solid rgba(247,242,232,.05);
+}
+.cart-item:last-child{border-bottom:none}
+.ci-img{
+  width:52px;height:52px;flex-shrink:0;overflow:hidden;background:var(--dark-surface);
+}
+.ci-img svg{width:100%;height:100%;display:block}
+.ci-info{flex:1;min-width:0}
+.ci-name{
+  font-family:var(--serif);font-size:1rem;font-weight:400;
+  color:rgba(247,242,232,.85);line-height:1.2;margin-bottom:.25rem;
+}
+.ci-unit-price{
+  font-family:var(--sans);font-size:.7rem;color:rgba(247,242,232,.28);font-weight:300;
+}
+.ci-controls{display:flex;align-items:center;justify-content:space-between;margin-top:.6rem}
+.ci-stepper{display:flex;align-items:center;gap:0;border:1px solid rgba(196,152,64,.2)}
+.ci-btn{
+  width:26px;height:26px;background:none;border:none;cursor:pointer;
+  color:rgba(247,242,232,.4);font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s;
+}
+.ci-btn:hover{background:rgba(196,152,64,.15);color:var(--gold-warm)}
+.ci-qty{
+  width:28px;text-align:center;font-family:var(--serif);font-size:1rem;
+  font-weight:300;color:var(--ivory);line-height:26px;
+  border-left:1px solid rgba(196,152,64,.15);
+  border-right:1px solid rgba(196,152,64,.15);
+}
+.ci-subtotal{
+  font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--gold-warm);
+}
+.ci-remove{
+  background:none;border:none;cursor:pointer;
+  color:rgba(247,242,232,.18);padding:.2rem;
+  transition:color .25s;align-self:flex-start;margin-left:.3rem;
+}
+.ci-remove:hover{color:rgba(196,114,74,.8)}
+.ci-remove svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5}
+
+/* Cart notes */
+.cart-notes-section{
+  padding:0 1.8rem 1rem;flex-shrink:0;
+  border-top:1px solid rgba(247,242,232,.05);padding-top:1rem;
+}
+.notes-label{
+  font-family:var(--sans);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(247,242,232,.28);margin-bottom:.55rem;font-weight:300;
+}
+.notes-fields{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.6rem}
+.cart-field{
+  width:100%;background:rgba(247,242,232,.04);border:1px solid rgba(196,152,64,.12);
+  padding:.65rem .85rem;color:var(--ivory);
+  font-family:var(--sans);font-size:.8rem;font-weight:300;
+  outline:none;transition:border-color .3s;
+}
+.cart-field::placeholder{color:rgba(247,242,232,.2);letter-spacing:.04em}
+.cart-field:focus{border-color:rgba(196,152,64,.4)}
+.cart-textarea{
+  width:100%;background:rgba(247,242,232,.04);border:1px solid rgba(196,152,64,.12);
+  padding:.65rem .85rem;color:var(--ivory);
+  font-family:var(--sans);font-size:.8rem;font-weight:300;
+  outline:none;transition:border-color .3s;resize:none;height:60px;
+}
+.cart-textarea::placeholder{color:rgba(247,242,232,.2)}
+.cart-textarea:focus{border-color:rgba(196,152,64,.4)}
+
+/* Cart footer */
+.cart-footer{
+  padding:1.2rem 1.8rem 1.8rem;
+  border-top:1px solid rgba(196,152,64,.1);
+  flex-shrink:0;background:var(--dark);
+}
+.cart-total-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:1.3rem;
+}
+.cart-total-label{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(247,242,232,.35);font-weight:300;
+}
+.cart-total-amount{
+  font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--ivory);
+}
+.cart-total-amount small{font-family:var(--sans);font-size:.7rem;color:rgba(247,242,232,.28);margin-left:.3rem}
+
+/* WhatsApp CTA */
+.wa-checkout{
+  display:flex;align-items:center;justify-content:center;gap:.8rem;
+  width:100%;
+  background:#25D366;color:#fff;border:none;
+  padding:1.1rem;cursor:pointer;
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:400;
+  transition:background .3s,transform .2s;
+  position:relative;overflow:hidden;
+}
+.wa-checkout::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,.15);
+  transform:translateX(-110%) skewX(-15deg);
+  transition:transform .5s var(--ease-out);
+}
+.wa-checkout:hover{background:#1EBE58;transform:translateY(-1px)}
+.wa-checkout:hover::before{transform:translateX(120%) skewX(-15deg)}
+.wa-checkout svg{width:20px;height:20px;fill:currentColor;flex-shrink:0}
+.wa-note{
+  font-family:var(--sans);font-size:.62rem;color:rgba(247,242,232,.2);
+  text-align:center;margin-top:.75rem;font-weight:300;line-height:1.6;
+}
+
+/* ── STICKY CART PILL (mobile + fallback) ── */
+#cart-pill{
+  position:fixed;bottom:1.8rem;right:1.8rem;z-index:500;
+  display:flex;align-items:center;gap:.7rem;
+  background:var(--sage);color:var(--ivory);
+  padding:.8rem 1.5rem .8rem 1.2rem;
+  border:1px solid rgba(196,152,64,.2);
+  cursor:pointer;
+  box-shadow:0 8px 32px rgba(12,22,16,.4);
+  transition:background .3s,transform .25s var(--ease-out),opacity .3s;
+  opacity:0;transform:translateY(12px);pointer-events:none;
+}
+#cart-pill.show{opacity:1;transform:translateY(0);pointer-events:all}
+#cart-pill:hover{background:var(--sage-deep)}
+.pill-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+.pill-label{font-family:var(--sans);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400}
+.pill-count{
+  background:var(--gold);color:var(--dark);
+  width:22px;height:22px;border-radius:50%;
+  font-family:var(--sans);font-size:.65rem;font-weight:500;
+  display:flex;align-items:center;justify-content:center;
+}
+.pill-total{
+  font-family:var(--serif);font-size:1rem;font-weight:300;
+  border-left:1px solid rgba(247,242,232,.15);padding-left:.7rem;
+}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.on{opacity:1;transform:translateY(0)}
+
+/* ── TOAST NOTIFICATION ── */
+#toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--sage-deep);color:var(--ivory);
+  font-family:var(--sans);font-size:.75rem;letter-spacing:.08em;
+  padding:.7rem 1.6rem;border:1px solid rgba(196,152,64,.2);
+  opacity:0;transition:opacity .3s,transform .3s var(--ease-out);
+  z-index:3000;pointer-events:none;white-space:nowrap;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  .nav-links{display:none}
+  #nav{padding:1.2rem 5%}
+  #nav.scrolled{padding:.85rem 5%}
+  .menu-grid{grid-template-columns:1fr}
+  .menu-card.featured{grid-column:span 1;flex-direction:column}
+  .menu-card.featured .menu-card-img{width:100%;aspect-ratio:16/10}
+  #cart-drawer{width:100vw}
+  .notes-fields{grid-template-columns:1fr}
+}
+@media(max-width:540px){
+  .cat-tab{padding:.9rem 1rem;font-size:.58rem}
+  #menu-body{padding:3rem 5% 8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div id="cursor"></div>
+<div id="cursor-trail"></div>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="nav">
+  <a href="rocky-river-resort.html" class="logo">
+    <span class="logo-main">Rocky River Resort</span>
+    <span class="logo-sub">Thika East · Kenya</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="rocky-river-resort.html#about">Story</a></li>
+    <li><a href="rocky-river-resort.html#accommodation">Stays</a></li>
+    <li><a href="rocky-river-resort.html#pool">The Pool</a></li>
+    <li><a href="rocky-river-resort.html#scenic">Nature</a></li>
+    <li><a href="menu.html" class="active">Dining</a></li>
+    <li><a href="rocky-river-resort.html#experiences">Experiences</a></li>
+  </ul>
+  <a href="rocky-river-resort.html#booking" class="nav-book">Reserve Now</a>
+</nav>
+
+<!-- ══ MENU HERO ══ -->
+<section id="menu-hero">
+  <div class="mh-bg"></div>
+  <!-- Cinematic dining scene SVG -->
+  <svg class="mh-scene" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="mh-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0C1610"/>
+        <stop offset="60%" stop-color="#1A2E22"/>
+        <stop offset="100%" stop-color="#26707F" stop-opacity=".5"/>
+      </linearGradient>
+      <linearGradient id="mh-riv" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#3A7888"/>
+        <stop offset="100%" stop-color="#26607A"/>
+      </linearGradient>
+    </defs>
+    <!-- Night sky -->
+    <rect width="1440" height="500" fill="url(#mh-sky)"/>
+    <!-- Stars -->
+    <circle cx="200" cy="60" r="1.2" fill="#F5EFE0" opacity=".6"/>
+    <circle cx="380" cy="38" r="1" fill="#F5EFE0" opacity=".5"/>
+    <circle cx="540" cy="80" r="1.5" fill="#F5EFE0" opacity=".55"/>
+    <circle cx="720" cy="42" r="1" fill="#F5EFE0" opacity=".45"/>
+    <circle cx="900" cy="68" r="1.2" fill="#F5EFE0" opacity=".6"/>
+    <circle cx="1100" cy="35" r="1" fill="#F5EFE0" opacity=".5"/>
+    <circle cx="1300" cy="72" r="1.5" fill="#F5EFE0" opacity=".5"/>
+    <circle cx="1420" cy="50" r="1" fill="#F5EFE0" opacity=".4"/>
+    <!-- Mountain silhouette -->
+    <polygon points="0,320 80,200 150,235 220,155 310,190 400,140 500,175 600,130 700,165 800,120 900,155 1000,125 1100,158 1200,130 1300,155 1440,140 1440,340 0,340" fill="#1A2E22" opacity=".7"/>
+    <polygon points="0,345 100,250 180,278 260,220 340,255 440,210 540,240 640,205 740,235 840,195 940,228 1040,205 1140,232 1240,215 1340,235 1440,220 1440,360 0,360" fill="#2C4636" opacity=".45"/>
+    <!-- 14 Falls glow -->
+    <line x1="800" y1="120" x2="792" y2="295" stroke="#A8D8E8" stroke-width="10" opacity=".18"/>
+    <line x1="808" y1="120" x2="800" y2="295" stroke="#A8D8E8" stroke-width="5" opacity=".12"/>
+    <ellipse cx="798" cy="300" rx="60" ry="14" fill="#C5E8F0" opacity=".25"/>
+    <!-- River -->
+    <path d="M0,400 Q360,382 720,392 Q1080,402 1440,385 L1440,500 L0,500Z" fill="url(#mh-riv)" opacity=".6"/>
+    <path d="M0,400 Q360,386 720,394 Q1080,404 1440,388" stroke="#72BFD0" stroke-width="1.5" fill="none" opacity=".35"/>
+    <!-- Dining table scene (right side) -->
+    <rect x="980" y="300" width="380" height="8" fill="#8B7A60" opacity=".3" rx="1"/>
+    <!-- Candles -->
+    <rect x="1080" y="265" width="5" height="40" fill="#E8D090" opacity=".7"/>
+    <rect x="1200" y="258" width="5" height="47" fill="#E8D090" opacity=".7"/>
+    <circle cx="1082" cy="263" r="7" fill="#FF8C20" opacity=".6"/>
+    <circle cx="1202" cy="256" r="7" fill="#FF8C20" opacity=".6"/>
+    <circle cx="1140" cy="270" r="70" fill="#C49840" opacity=".05"/>
+    <circle cx="1140" cy="270" r="130" fill="#C49840" opacity=".03"/>
+    <!-- Wine glasses -->
+    <ellipse cx="1050" cy="295" rx="10" ry="3" fill="#C5E8F0" opacity=".25"/>
+    <rect x="1047" y="280" width="6" height="17" fill="#C5E8F0" opacity=".2"/>
+    <ellipse cx="1240" cy="295" rx="10" ry="3" fill="#C5E8F0" opacity=".25"/>
+    <rect x="1237" y="280" width="6" height="17" fill="#C5E8F0" opacity=".2"/>
+    <!-- Trees -->
+    <ellipse cx="50" cy="370" rx="55" ry="80" fill="#0C1610"/>
+    <ellipse cx="150" cy="360" rx="48" ry="68" fill="#121E17"/>
+    <ellipse cx="1380" cy="365" rx="50" ry="72" fill="#0C1610"/>
+  </svg>
+  <div class="mh-grad"></div>
+  <div class="mh-content">
+    <div class="mh-eyebrow">Riverside Dining · Rocky River Resort</div>
+    <h1 class="mh-title">The River<br><em>Table</em></h1>
+    <p class="mh-sub">Farm-fresh Kenyan cuisine, ordered to your room or table. Crafted from the land, served by the river.</p>
+  </div>
+</section>
+
+<!-- ══ CATEGORY NAV (sticky) ══ -->
+<div id="cat-nav">
+  <div class="cat-tabs" role="tablist">
+    <button class="cat-tab active" data-cat="all" role="tab" aria-selected="true">All</button>
+    <button class="cat-tab" data-cat="breakfast" role="tab">Breakfast</button>
+    <button class="cat-tab" data-cat="starters" role="tab">Starters</button>
+    <button class="cat-tab" data-cat="mains" role="tab">Mains</button>
+    <button class="cat-tab" data-cat="grill" role="tab">The Grill</button>
+    <button class="cat-tab" data-cat="drinks" role="tab">Drinks</button>
+    <button class="cat-tab" data-cat="desserts" role="tab">Desserts</button>
+  </div>
+  <div class="cat-right">
+    <button class="cart-trigger" id="cart-btn" aria-label="Open cart">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Your Order
+      <span class="cart-badge" id="cart-badge">0</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══ MENU BODY ══ -->
+<main id="menu-body">
+
+  <!-- ── BREAKFAST ── -->
+  <section class="menu-category rv" id="sec-breakfast" data-section="breakfast">
+    <div class="sec-head">
+      <div class="eyebrow">Morning at the River</div>
+      <h2 class="sec-title">Breakfast <em>&amp; Brunch</em></h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="menu-grid" id="grid-breakfast"></div>
+  </section>
+
+  <!-- ── STARTERS ── -->
+  <section class="menu-category rv" id="sec-starters" data-section="starters">
+    <div class="sec-head">
+      <div class="eyebrow">Begin the Journey</div>
+      <h2 class="sec-title">Starters <em>&amp; Sharing</em></h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="menu-grid" id="grid-starters"></div>
+  </section>
+
+  <!-- ── MAINS ── -->
+  <section class="menu-category rv" id="sec-mains" data-section="mains">
+    <div class="sec-head">
+      <div class="eyebrow">Heart of the Kitchen</div>
+      <h2 class="sec-title">Main <em>Courses</em></h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="menu-grid" id="grid-mains"></div>
+  </section>
+
+  <!-- ── GRILL ── -->
+  <section class="menu-category rv" id="sec-grill" data-section="grill">
+    <div class="sec-head">
+      <div class="eyebrow">Over Open Flame</div>
+      <h2 class="sec-title">The <em>Grill</em></h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="menu-grid" id="grid-grill"></div>
+  </section>
+
+  <!-- ── DRINKS ── -->
+  <section class="menu-category rv" id="sec-drinks" data-section="drinks">
+    <div class="sec-head">
+      <div class="eyebrow">Sundowner &amp; Beyond</div>
+      <h2 class="sec-title">Drinks <em>&amp; Cocktails</em></h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="menu-grid" id="grid-drinks"></div>
+  </section>
+
+  <!-- ── DESSERTS ── -->
+  <section class="menu-category rv" id="sec-desserts" data-section="desserts">
+    <div class="sec-head">
+      <div class="eyebrow">Sweet Endings</div>
+      <h2 class="sec-title"><em>Desserts</em></h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="menu-grid" id="grid-desserts"></div>
+  </section>
+
+</main>
+
+<!-- ══ CART OVERLAY ══ -->
+<div id="cart-overlay" role="presentation"></div>
+
+<!-- ══ CART DRAWER ══ -->
+<aside id="cart-drawer" role="dialog" aria-modal="true" aria-label="Your order">
+  <div class="cart-header">
+    <div class="cart-header-left">
+      <div class="eyebrow">Room Service</div>
+      <div class="cart-title">Your Order</div>
+    </div>
+    <button class="cart-close" id="cart-close" aria-label="Close cart">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div class="cart-items" id="cart-items-list">
+    <!-- Populated by JS -->
+  </div>
+
+  <div class="cart-notes-section" id="cart-notes-section" style="display:none">
+    <div class="notes-label">Delivery Details</div>
+    <div class="notes-fields">
+      <input class="cart-field" id="field-name" type="text" placeholder="Your name">
+      <input class="cart-field" id="field-room" type="text" placeholder="Room / Table no.">
+    </div>
+    <textarea class="cart-textarea" id="field-notes" placeholder="Special requests, allergies, modifications…"></textarea>
+  </div>
+
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Order Total</span>
+      <span class="cart-total-amount" id="cart-total">KES 0 <small>incl. VAT</small></span>
+    </div>
+    <button class="wa-checkout" id="wa-btn">
+      <!-- WhatsApp icon -->
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Order via WhatsApp
+    </button>
+    <p class="wa-note">Your order summary will open in WhatsApp. Tap Send to confirm. We deliver within 30 mins.</p>
+  </div>
+</aside>
+
+<!-- ══ CART PILL ══ -->
+<div id="cart-pill" role="button" tabindex="0" aria-label="View your order">
+  <div class="pill-icon">
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+  </div>
+  <span class="pill-label">Order</span>
+  <span class="pill-count" id="pill-count">0</span>
+  <span class="pill-total" id="pill-total">KES 0</span>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- ════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════ -->
+<script>
+/* ─────────────────────────────────
+   MENU DATA
+   In production this comes from Supabase:
+   const { data } = await supabase.from('menu_items').select('*,category:menu_categories(*)')
+───────────────────────────────── */
+const MENU = {
+  breakfast: [
+    {
+      id:'b1', name:'Athi Sunrise Platter',
+      desc:'Two free-range eggs any style, grilled river tomatoes, sautéed mushrooms, crispy bacon, Kenyan sausage, and toasted sourdough.',
+      price:1200, tag:'popular', dietary:['gf-opt'],
+      svg:'breakfast'
+    },
+    {
+      id:'b2', name:'Mandazi & Chai',
+      desc:'House-made coastal mandazi — light, cardamom-scented — served with a pot of masala chai brewed from Limuru leaves and fresh ginger.',
+      price:480, tag:'veg', dietary:['veg'],
+      svg:'chai'
+    },
+    {
+      id:'b3', name:'Avocado on Kikuyu Bread',
+      desc:'Thick-cut seeded loaf from our kitchen, smashed avocado, poached egg, chilli flakes, and a drizzle of lemon.',
+      price:750, tag:'veg', dietary:['veg'],
+      svg:'avo'
+    },
+    {
+      id:'b4', name:'Tropical Fruit Bowl',
+      desc:'Seasonal pawpaw, mango, pineapple, passion fruit and banana with Greek yoghurt, local honey, and toasted pumpkin seeds.',
+      price:520, tag:'veg', dietary:['veg','gf'],
+      svg:'fruit'
+    },
+    {
+      id:'b5', name:'Full River Breakfast',
+      desc:'Our signature full board — eggs, meats, fresh juice, fruit, toast, and a pot of your preferred hot drink. The complete morning.',
+      price:1650, tag:'popular', dietary:[],
+      svg:'full',
+      featured: true
+    },
+  ],
+  starters: [
+    {
+      id:'s1', name:'Grilled Tilapia Bites',
+      desc:'Crispy battered tilapia from the Athi, served with a tamarind dipping sauce and shredded cabbage slaw.',
+      price:850, tag:'popular', dietary:['gf'],
+      svg:'tilapia'
+    },
+    {
+      id:'s2', name:'Kenyan Bruschetta',
+      desc:'Grilled chapati rounds topped with diced tomato, red onion, coriander, avocado, and a squeeze of lime.',
+      price:580, tag:'veg', dietary:['veg'],
+      svg:'bruschetta'
+    },
+    {
+      id:'s3', name:'Samosa Trio',
+      desc:'Three golden samosas — beef mince, lamb, and a spiced lentil — with a coriander chutney and pickled onions.',
+      price:620, tag:null, dietary:[],
+      svg:'samosa'
+    },
+    {
+      id:'s4', name:'Wild Mushroom Soup',
+      desc:'Foraged forest mushrooms slow-cooked with garlic, cream, and fresh thyme. Finished with truffle oil and crusty bread.',
+      price:680, tag:'veg', dietary:['veg','gf'],
+      svg:'soup'
+    },
+  ],
+  mains: [
+    {
+      id:'m1', name:'Athi River Tilapia',
+      desc:'Whole tilapia grilled over charcoal with lemon, garlic herb butter and pilipili. Served with coconut rice and kachumbari.',
+      price:1400, tag:'popular', dietary:['gf'],
+      svg:'tilapia-main',
+      featured: true
+    },
+    {
+      id:'m2', name:'Swahili Fish Curry',
+      desc:'Thick coconut milk curry with fresh catch of the day, tomatoes, ginger, and warming coastal spices. Served with chapati.',
+      price:1350, tag:'spicy', dietary:['gf'],
+      svg:'curry'
+    },
+    {
+      id:'m3', name:'Githeri wa Thika',
+      desc:'Our take on the highlands classic — slow-cooked maize and beans with fried onions, tomatoes, and a touch of smoked paprika.',
+      price:620, tag:'veg', dietary:['veg','gf'],
+      svg:'githeri'
+    },
+    {
+      id:'m4', name:'Ugali & Sukuma Wiki',
+      desc:'Stone-ground ugali served with braised sukuma wiki, fried egg, and your choice of nyama stew or vegetable.',
+      price:550, tag:null, dietary:['gf'],
+      svg:'ugali'
+    },
+    {
+      id:'m5', name:'Pilau Mbuzi',
+      desc:'Fragrant goat pilau slow-cooked with whole spices — cinnamon, cardamom, cloves. Served with raita and kachumbari.',
+      price:1550, tag:'popular', dietary:['gf'],
+      svg:'pilau'
+    },
+    {
+      id:'m6', name:'Pasta Riverside',
+      desc:'Hand-rolled pappardelle with a slow braised oxtail ragù, fresh Parmesan, and garden herbs. A luxury classic, river-side.',
+      price:1300, tag:null, dietary:[],
+      svg:'pasta'
+    },
+  ],
+  grill: [
+    {
+      id:'g1', name:'Nyama Choma Platter',
+      desc:'Mixed grill of goat, beef and chicken over open charcoal. Served family-style with ugali, kachumbari, and roasted vegetables.',
+      price:2800, tag:'popular', dietary:['gf'],
+      svg:'nyama',
+      featured: true
+    },
+    {
+      id:'g2', name:'Grilled Chicken',
+      desc:'Half chicken marinated in garlic, lemon, and herbs overnight. Charcoal-grilled to a golden char. Served with fries and coleslaw.',
+      price:1200, tag:null, dietary:['gf'],
+      svg:'chicken'
+    },
+    {
+      id:'g3', name:'Beef Tenderloin',
+      desc:'200g prime Kenyan tenderloin, grilled to your liking, with garlic butter, seasonal greens, and hand-cut chips.',
+      price:2400, tag:null, dietary:['gf'],
+      svg:'steak'
+    },
+    {
+      id:'g4', name:'Prawn Skewers',
+      desc:'Jumbo prawns marinated in lime, chilli and garlic. Grilled on skewers and served with coconut rice and mango salsa.',
+      price:2200, tag:'spicy', dietary:['gf'],
+      svg:'prawns'
+    },
+  ],
+  drinks: [
+    {
+      id:'d1', name:'Athi Sundowner',
+      desc:'Our signature cocktail — passion fruit, fresh lime, coconut water, and local cane spirit. Best enjoyed at the river terrace.',
+      price:780, tag:'popular', dietary:['veg','gf'],
+      svg:'cocktail'
+    },
+    {
+      id:'d2', name:'Dawa Classic',
+      desc:'Kenya\'s beloved remedy — honey, lime, vodka, and crushed ice. Stirred with a honey stirrer at your table.',
+      price:850, tag:null, dietary:['veg','gf'],
+      svg:'dawa'
+    },
+    {
+      id:'d3', name:'Kenyan Craft Beer',
+      desc:'Rotating selection from Nairobi Brewing Co. and White Cap. Ask your server for today\'s taps.',
+      price:450, tag:null, dietary:['veg'],
+      svg:'beer'
+    },
+    {
+      id:'d4', name:'Fresh Juices',
+      desc:'Passion fruit, mango, pineapple, or watermelon — pressed daily from local farms. Still or sparkling available.',
+      price:320, tag:'veg', dietary:['veg','gf'],
+      svg:'juice'
+    },
+    {
+      id:'d5', name:'Masala Chai Pot',
+      desc:'A full pot of spiced chai brewed with Limuru tea leaves, fresh ginger, cardamom, cinnamon, and whole milk.',
+      price:280, tag:'veg', dietary:['veg','gf'],
+      svg:'chai-d'
+    },
+    {
+      id:'d6', name:'Kenyan Wine Selection',
+      desc:'House red, white, or rosé. Ask for our cellar list for premium bottles. River-view wine service available.',
+      price:650, tag:null, dietary:['veg','gf'],
+      svg:'wine'
+    },
+  ],
+  desserts: [
+    {
+      id:'ds1', name:'Maziwa Lala Panna Cotta',
+      desc:'Traditional soured milk set with vanilla bean, topped with a passion fruit curd and crushed macadamia nuts.',
+      price:580, tag:'popular', dietary:['veg','gf'],
+      svg:'pannacotta'
+    },
+    {
+      id:'ds2', name:'Chocolate & Mango Fondant',
+      desc:'Warm dark chocolate fondant with a molten centre, paired with a mango sorbet and candied lime zest.',
+      price:720, tag:'veg', dietary:['veg'],
+      svg:'fondant'
+    },
+    {
+      id:'ds3', name:'Tropical Fruit Pavlova',
+      desc:'Crisp meringue with whipped cream, fresh passion fruit, mango, and a drizzle of local honey.',
+      price:650, tag:'veg', dietary:['veg','gf'],
+      svg:'pavlova'
+    },
+    {
+      id:'ds4', name:'African Honey Cake',
+      desc:'Dense, moist sponge made with wild Kenyan honey and cardamom. Served warm with vanilla bean ice cream.',
+      price:580, tag:'veg', dietary:['veg'],
+      svg:'cake'
+    },
+  ],
+};
+
+/* ── SVG thumbnail generator ──
+   In production these are <img src={supabase_storage_url} />
+   Here we draw illustrative SVG thumbnails that match the dark/ivory aesthetic */
+function makeSVG(key, name) {
+  const scenes = {
+    /* Breakfast */
+    breakfast:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><ellipse cx="150" cy="130" rx="90" ry="28" fill="#2C4636" opacity=".7"/><circle cx="150" cy="118" r="55" fill="#3A5C45" opacity=".5"/><circle cx="150" cy="118" r="42" fill="#C49840" opacity=".15"/><ellipse cx="126" cy="112" rx="14" ry="9" fill="#F5EFE0" opacity=".85"/><circle cx="126" cy="109" r="5" fill="#F8D060" opacity=".8"/><ellipse cx="170" cy="114" rx="12" ry="8" fill="#E8A060" opacity=".7"/><rect x="100" y="98" width="28" height="5" fill="#8B7A60" opacity=".5" rx="1"/><circle cx="200" cy="100" r="18" fill="#E8A060" opacity=".3"/><circle cx="200" cy="100" r="10" fill="#E8C060" opacity=".5"/></svg>`,
+    chai:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><rect x="105" y="70" width="90" height="88" fill="#3A2810" rx="4"/><rect x="110" y="75" width="80" height="75" fill="#C4724A" opacity=".6" rx="3"/><ellipse cx="150" cy="75" rx="40" ry="8" fill="#8B5A2A" opacity=".7"/><rect x="195" y="110" width="18" height="6" fill="#8B5A2A" opacity=".6" rx="3"/><ellipse cx="150" cy="162" rx="50" ry="6" fill="#2C1A08" opacity=".5"/><circle cx="150" cy="88" r="25" fill="#E8A060" opacity=".12"/></svg>`,
+    avo:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#2C4636"/><rect x="60" y="95" width="180" height="55" fill="#8B7A60" opacity=".5" rx="3"/><ellipse cx="150" cy="90" rx="55" ry="38" fill="#3A6248" opacity=".85"/><ellipse cx="150" cy="92" rx="30" ry="22" fill="#C49840" opacity=".5"/><circle cx="150" cy="94" r="10" fill="#4A3018" opacity=".7"/><ellipse cx="150" cy="68" rx="12" ry="9" fill="#F5EFE0" opacity=".75"/></svg>`,
+    fruit:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><circle cx="100" cy="110" r="32" fill="#E8A060" opacity=".8"/><circle cx="155" cy="105" r="28" fill="#C49840" opacity=".75"/><circle cx="205" cy="112" r="26" fill="#E87060" opacity=".7"/><circle cx="135" cy="138" r="22" fill="#8FD080" opacity=".65"/><circle cx="185" cy="134" r="20" fill="#E860A0" opacity=".5"/><ellipse cx="150" cy="148" rx="75" ry="10" fill="#0C1610" opacity=".4"/></svg>`,
+    full:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><rect x="45" y="95" width="210" height="65" fill="#2C4636" opacity=".5" rx="40"/><circle cx="100" cy="105" r="30" fill="#3A5C45" opacity=".6"/><circle cx="100" cy="105" r="22" fill="#C49840" opacity=".2"/><circle cx="155" cy="98" r="26" fill="#E8A060" opacity=".6"/><circle cx="210" cy="106" r="28" fill="#3A2810" opacity=".6"/><ellipse cx="155" cy="162" rx="80" ry="8" fill="#0C1610" opacity=".3"/><circle cx="240" cy="72" r="28" fill="#F8E488" opacity=".15"/><circle cx="240" cy="72" r="16" fill="#F5D870" opacity=".25"/></svg>`,
+    /* Starters */
+    tilapia:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A3028"/><ellipse cx="150" cy="115" rx="85" ry="25" fill="#26707F" opacity=".35"/><ellipse cx="148" cy="108" rx="68" ry="22" fill="#3A9088" opacity=".6"/><ellipse cx="148" cy="105" rx="55" ry="16" fill="#C4724A" opacity=".65"/><path d="M95 105 Q130 90 175 98 Q195 102 195 108 Q175 118 130 115 Z" fill="#E8A060" opacity=".5"/><circle cx="110" cy="103" r="4" fill="#0C1610"/><path d="M195 106 Q210 98 218 108 Q210 116 195 108Z" fill="#C4724A" opacity=".6"/></svg>`,
+    bruschetta:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#2C1808"/><rect x="65" y="95" width="170" height="55" fill="#8B6A3A" rx="4"/><rect x="72" y="88" width="158" height="12" fill="#C49840" opacity=".5" rx="2"/><circle cx="105" cy="108" r="12" fill="#E87060" opacity=".75"/><circle cx="145" cy="104" r="10" fill="#E8A060" opacity=".7"/><circle cx="185" cy="110" r="9" fill="#3A6248" opacity=".8"/><ellipse cx="150" cy="160" rx="70" ry="7" fill="#0C1610" opacity=".35"/></svg>`,
+    samosa:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><polygon points="90,145 130,75 170,145" fill="#C4724A" opacity=".8"/><polygon points="145,145 185,75 225,145" fill="#C49840" opacity=".75"/><polygon points="70,148 108,85 148,148" fill="#E8A060" opacity=".6"/><ellipse cx="155" cy="150" rx="80" ry="9" fill="#0C1610" opacity=".3"/></svg>`,
+    soup:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><ellipse cx="150" cy="128" rx="80" ry="25" fill="#2C4636" opacity=".5"/><ellipse cx="150" cy="120" rx="70" ry="45" fill="#3A2810" opacity=".8"/><ellipse cx="150" cy="108" rx="60" ry="22" fill="#C4724A" opacity=".4"/><path d="M115 108 Q135 102 155 108 Q172 114 155 118 Q135 122 115 116Z" fill="#E8A060" opacity=".3"/><circle cx="150" cy="78" r="4" fill="#E8D090" opacity=".6"/></svg>`,
+    /* Mains */
+    'tilapia-main':`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#121E17"/><rect x="0" y="120" width="300" height="68" fill="#1A2E22" opacity=".6"/><ellipse cx="150" cy="118" rx="95" ry="28" fill="#26707F" opacity=".3"/><path d="M60 110 Q95 82 150 90 Q200 98 235 88 Q250 98 235 115 Q195 132 145 125 Q95 118 60 110Z" fill="#3A5C45" opacity=".6"/><path d="M65 110 Q100 86 155 94 Q200 102 230 92 Q242 100 230 114 Q195 128 150 122 Q98 116 65 110Z" fill="#C49840" opacity=".25"/><circle cx="228" cy="106" r="5" fill="#0C1610"/><ellipse cx="220" cy="165" rx="30" ry="5" fill="#C49840" opacity=".3"/></svg>`,
+    curry:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#2C1808"/><ellipse cx="150" cy="120" rx="88" ry="30" fill="#3A1A08" opacity=".8"/><ellipse cx="150" cy="110" rx="75" ry="45" fill="#C4724A" opacity=".55"/><ellipse cx="150" cy="100" rx="60" ry="30" fill="#E8A060" opacity=".45"/><circle cx="120" cy="98" r="8" fill="#C49840" opacity=".5"/><circle cx="165" cy="94" r="6" fill="#3A6248" opacity=".7"/><circle cx="188" cy="102" r="7" fill="#E8D090" opacity=".5"/></svg>`,
+    githeri:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><ellipse cx="150" cy="122" rx="85" ry="26" fill="#2C4636" opacity=".5"/><ellipse cx="150" cy="112" rx="72" ry="42" fill="#3A5C45" opacity=".6"/><circle cx="118" cy="108" r="7" fill="#F5EFE0" opacity=".7"/><circle cx="138" cy="102" r="6" fill="#E8D090" opacity=".75"/><circle cx="158" cy="108" r="7" fill="#F5EFE0" opacity=".7"/><circle cx="176" cy="103" r="6" fill="#C49840" opacity=".6"/><circle cx="135" cy="118" r="5" fill="#E8D090" opacity=".65"/><circle cx="162" cy="117" r="6" fill="#F5EFE0" opacity=".7"/></svg>`,
+    ugali:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><ellipse cx="120" cy="125" rx="55" ry="20" fill="#2C4636" opacity=".4"/><ellipse cx="120" cy="115" rx="48" ry="38" fill="#F5EFE0" opacity=".75"/><ellipse cx="120" cy="105" rx="36" ry="28" fill="#EFE8D5" opacity=".8"/><ellipse cx="195" cy="120" rx="52" ry="18" fill="#2C4636" opacity=".4"/><ellipse cx="195" cy="110" rx="44" ry="35" fill="#3A5C45" opacity=".6"/></svg>`,
+    pilau:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#2C1808"/><ellipse cx="150" cy="122" rx="90" ry="28" fill="#3A2810" opacity=".7"/><ellipse cx="150" cy="112" rx="75" ry="42" fill="#C49840" opacity=".35"/><circle cx="120" cy="105" r="5" fill="#E8D090" opacity=".7"/><circle cx="145" cy="98" r="4" fill="#F5EFE0" opacity=".7"/><circle cx="168" cy="106" r="5" fill="#E8D090" opacity=".65"/><circle cx="155" cy="118" r="4" fill="#C49840" opacity=".6"/><ellipse cx="135" cy="112" rx="16" ry="8" fill="#8B5A30" opacity=".6"/></svg>`,
+    pasta:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><ellipse cx="150" cy="125" rx="88" ry="26" fill="#2C1808" opacity=".6"/><path d="M75 115 Q100 98 135 108 Q165 118 185 100 Q210 85 235 108" stroke="#F5EFE0" stroke-width="4" fill="none" opacity=".7"/><path d="M85 125 Q115 108 148 118 Q175 128 200 110 Q220 96 240 115" stroke="#E8D090" stroke-width="3.5" fill="none" opacity=".6"/><circle cx="148" cy="108" r="18" fill="#C4724A" opacity=".4"/></svg>`,
+    /* Grill */
+    nyama:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#121E17"/><rect x="0" y="138" width="300" height="50" fill="#1A2E22"/><line x1="55" y1="130" x2="55" y2="160" stroke="#8B6A3A" stroke-width="3"/><line x1="90" y1="128" x2="90" y2="162" stroke="#8B6A3A" stroke-width="3"/><line x1="125" y1="130" x2="125" y2="160" stroke="#8B6A3A" stroke-width="3"/><ellipse cx="55" cy="115" rx="25" ry="18" fill="#C4724A" opacity=".8"/><ellipse cx="110" cy="110" rx="30" ry="20" fill="#8B5A30" opacity=".75"/><ellipse cx="168" cy="118" rx="28" ry="17" fill="#C4724A" opacity=".7"/><ellipse cx="228" cy="112" rx="22" ry="15" fill="#8B5A30" opacity=".7"/><circle cx="85" cy="72" r="4" fill="#E8A060" opacity=".6"/><circle cx="120" cy="62" r="3" fill="#F8D060" opacity=".5"/><circle cx="155" cy="70" r="4" fill="#E8A060" opacity=".55"/></svg>`,
+    chicken:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><ellipse cx="150" cy="120" rx="88" ry="28" fill="#2C1808" opacity=".5"/><ellipse cx="115" cy="108" rx="52" ry="38" fill="#C4724A" opacity=".7"/><ellipse cx="115" cy="102" rx="40" ry="28" fill="#E8A060" opacity=".5"/><ellipse cx="195" cy="112" rx="42" ry="30" fill="#C4724A" opacity=".65"/><rect x="168" y="95" width="6" height="28" fill="#8B6A3A" opacity=".6" rx="2"/><rect x="210" y="98" width="6" height="24" fill="#8B6A3A" opacity=".6" rx="2"/></svg>`,
+    steak:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#121E17"/><ellipse cx="150" cy="125" rx="90" ry="25" fill="#1A0C08" opacity=".7"/><path d="M70 115 Q88 88 125 92 Q165 98 200 85 Q228 78 238 100 Q232 122 200 130 Q165 136 125 132 Q92 128 70 115Z" fill="#8B3A20" opacity=".85"/><path d="M80 112 Q98 90 132 94 Q170 100 202 90 Q224 84 232 103 Q226 120 198 126 Q168 132 132 128 Q100 124 80 112Z" fill="#C4724A" opacity=".6"/><path d="M100 108 Q130 100 165 104" stroke="#E8A060" stroke-width="2" fill="none" opacity=".5"/><circle cx="200" cy="92" r="15" fill="#C49840" opacity=".15"/></svg>`,
+    prawns:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><path d="M80 140 L80 70 Q80 55 95 55 Q110 55 110 70 Q110 95 95 105 Q80 115 80 140Z" fill="#E87060" opacity=".75" stroke="#C4724A" stroke-width="1"/><path d="M130 138 L130 68 Q130 53 145 53 Q160 53 160 68 Q160 93 145 103 Q130 113 130 138Z" fill="#E87060" opacity=".7"/><path d="M180 140 L180 72 Q180 57 195 57 Q210 57 210 72 Q210 97 195 107 Q180 117 180 140Z" fill="#E87060" opacity=".75"/><line x1="75" y1="65" x2="82" y2="45" stroke="#8B6A3A" stroke-width="3"/><line x1="125" y1="63" x2="132" y2="43" stroke="#8B6A3A" stroke-width="3"/><line x1="175" y1="67" x2="182" y2="47" stroke="#8B6A3A" stroke-width="3"/></svg>`,
+    /* Drinks */
+    cocktail:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#0C1610"/><polygon points="150,48 205,130 95,130" fill="#26707F" opacity=".6"/><rect x="147" y="130" width="6" height="32" fill="#8B7A60" opacity=".5"/><ellipse cx="150" cy="162" rx="30" ry="5" fill="#8B7A60" opacity=".4"/><ellipse cx="150" cy="78" rx="38" ry="22" fill="#72BFD0" opacity=".3"/><circle cx="175" cy="88" r="5" fill="#E8A060" opacity=".7"/><circle cx="178" cy="52" r="4" fill="#F5EFE0" opacity=".5"/><rect x="168" y="52" width="22" height="2" fill="#F5EFE0" opacity=".3" transform="rotate(-30 168 52)"/></svg>`,
+    dawa:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#0C1610"/><rect x="112" y="55" width="76" height="105" fill="#F5EFE0" opacity=".12" rx="4"/><rect x="115" y="60" width="70" height="95" fill="#C49840" opacity=".2" rx="3"/><ellipse cx="150" cy="60" rx="38" ry="7" fill="#F5EFE0" opacity=".15"/><circle cx="175" cy="80" r="7" fill="#E8D060" opacity=".6"/><circle cx="165" cy="95" r="5" fill="#E8D060" opacity=".5"/><rect x="147" y="130" width="6" height="28" fill="#8B7A60" opacity=".4"/></svg>`,
+    beer:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A1208"/><rect x="115" y="55" width="70" height="110" fill="#C49840" opacity=".5" rx="3"/><rect x="118" y="55" width="64" height="30" fill="#F5EFE0" opacity=".4" rx="3"/><rect x="185" y="85" width="18" height="40" fill="#C49840" opacity=".3" rx="2"/><ellipse cx="150" cy="58" rx="35" ry="7" fill="#F5EFE0" opacity=".3"/></svg>`,
+    juice:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><rect x="118" y="65" width="64" height="95" fill="#E8A060" opacity=".55" rx="3"/><rect x="122" y="70" width="56" height="20" fill="#F5EFE0" opacity=".25" rx="2"/><ellipse cx="150" cy="68" rx="32" ry="6" fill="#E8C060" opacity=".4"/><circle cx="178" cy="110" r="8" fill="#F8D060" opacity=".5"/><circle cx="128" cy="120" r="6" fill="#F8D060" opacity=".45"/></svg>`,
+    'chai-d':`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><rect x="108" y="72" width="84" height="80" fill="#3A2810" rx="4"/><rect x="112" y="76" width="76" height="68" fill="#C4724A" opacity=".55" rx="3"/><ellipse cx="150" cy="72" rx="42" ry="8" fill="#8B5A2A" opacity=".6"/><rect x="192" y="108" width="16" height="5" fill="#8B5A2A" opacity=".5" rx="2"/><path d="M148 40 Q152 32 148 24" stroke="#F5EFE0" stroke-width="1.5" fill="none" opacity=".3"/><path d="M156 38 Q162 30 156 22" stroke="#F5EFE0" stroke-width="1.5" fill="none" opacity=".25"/></svg>`,
+    wine:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#121E17"/><path d="M130 55 L120 120 Q120 140 150 140 Q180 140 180 120 L170 55Z" fill="#8B2020" opacity=".7"/><path d="M133 55 L125 115 Q126 133 150 133 Q174 133 175 115 L167 55Z" fill="#C43A3A" opacity=".4"/><ellipse cx="150" cy="58" rx="20" ry="5" fill="#C43A3A" opacity=".3"/><rect x="147" y="140" width="6" height="22" fill="#8B7A60" opacity=".5"/><ellipse cx="150" cy="162" rx="20" ry="4" fill="#8B7A60" opacity=".35"/></svg>`,
+    /* Desserts */
+    pannacotta:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><ellipse cx="150" cy="128" rx="65" ry="18" fill="#2C4636" opacity=".4"/><ellipse cx="150" cy="115" rx="55" ry="40" fill="#F5EFE0" opacity=".85"/><ellipse cx="150" cy="90" rx="45" ry="20" fill="#E8C060" opacity=".6"/><ellipse cx="150" cy="86" rx="35" ry="12" fill="#C49840" opacity=".5"/><circle cx="162" cy="80" r="4" fill="#E8A060" opacity=".7"/></svg>`,
+    fondant:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#0C1610"/><ellipse cx="150" cy="128" rx="65" ry="18" fill="#1A0C08" opacity=".6"/><rect x="108" y="82" width="84" height="65" fill="#3A1808" opacity=".9" rx="4"/><rect x="112" y="86" width="76" height="55" fill="#1A0C08" opacity=".8" rx="3"/><circle cx="150" cy="112" r="18" fill="#C4724A" opacity=".5"/><ellipse cx="220" cy="110" rx="28" ry="22" fill="#E8C060" opacity=".3"/></svg>`,
+    pavlova:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><ellipse cx="150" cy="132" rx="80" ry="20" fill="#2C4636" opacity=".3"/><ellipse cx="150" cy="118" rx="70" ry="40" fill="#F5EFE0" opacity=".85"/><ellipse cx="150" cy="100" rx="55" ry="22" fill="#F7F2E8" opacity=".9"/><circle cx="125" cy="95" r="8" fill="#E8A060" opacity=".7"/><circle cx="155" cy="90" r="7" fill="#C49840" opacity=".7"/><circle cx="180" cy="96" r="8" fill="#E87060" opacity=".6"/></svg>`,
+    cake:`<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#1A2E22"/><ellipse cx="150" cy="130" rx="80" ry="20" fill="#2C1808" opacity=".5"/><rect x="90" y="75" width="120" height="75" fill="#8B5A2A" opacity=".7" rx="3"/><rect x="93" y="78" width="114" height="65" fill="#C49840" opacity=".4" rx="2"/><rect x="90" y="70" width="120" height="12" fill="#C49840" opacity=".5" rx="2"/><rect x="90" y="58" width="120" height="16" fill="#3A1808" opacity=".6" rx="2"/><rect x="147" y="38" width="6" height="22" fill="#F5EFE0" opacity=".7"/><circle cx="150" cy="36" r="5" fill="#E8A060" opacity=".8"/></svg>`,
+  };
+  return scenes[key] || `<svg viewBox="0 0 300 188" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="188" fill="#2C4636"/><ellipse cx="150" cy="110" rx="60" ry="40" fill="#3A5C45" opacity=".6"/></svg>`;
+}
+
+/* ── DIET LABELS ── */
+const dietLabels = { veg:'Vegetarian', gf:'Gluten-free', 'gf-opt':'GF option', spicy:'Contains spice' };
+const dietClass  = { veg:'d-veg', gf:'d-gf', 'gf-opt':'d-gf', spicy:'d-spicy' };
+
+/* ── CART STATE ── */
+let cart = {};  /* { [id]: { item, qty } } */
+
+/* ── RENDER MENU ── */
+function renderAll() {
+  Object.entries(MENU).forEach(([cat, items]) => {
+    const grid = document.getElementById('grid-' + cat);
+    if (!grid) return;
+    grid.innerHTML = '';
+    items.forEach(item => {
+      const inCart = cart[item.id];
+      const qty    = inCart ? inCart.qty : 0;
+
+      const dietHTML = item.dietary.map(d =>
+        `<span class="d-icon ${dietClass[d]||''}">${dietLabels[d]||d}</span>`
+      ).join('');
+
+      const tagHTML = item.tag
+        ? `<div class="menu-tag ${item.tag}">${item.tag === 'popular' ? 'Popular' : item.tag === 'spicy' ? 'Spicy' : item.tag === 'veg' ? 'Vegetarian' : ''}</div>`
+        : '';
+
+      const card = document.createElement('div');
+      card.className = 'menu-card' + (item.featured ? ' featured' : '');
+      card.dataset.id = item.id;
+
+      card.innerHTML = `
+        <div class="menu-card-img">
+          ${makeSVG(item.svg, item.name)}
+          <div class="menu-card-img-overlay"></div>
+          ${tagHTML}
+        </div>
+        <div class="menu-card-body">
+          ${dietHTML ? `<div class="dietary">${dietHTML}</div>` : ''}
+          <div class="menu-card-name">${item.name}</div>
+          <div class="menu-card-desc">${item.desc}</div>
+          <div class="menu-card-footer">
+            <div class="menu-card-price">KES ${item.price.toLocaleString()}<small>per serving</small></div>
+            <div style="display:flex;align-items:center;gap:.6rem">
+              <div class="qty-row${qty > 0 ? ' show' : ''}" id="qrow-${item.id}">
+                <button class="qty-btn" data-action="dec" data-id="${item.id}" aria-label="Remove one">−</button>
+                <div class="qty-num" id="qnum-${item.id}">${qty}</div>
+                <button class="qty-btn" data-action="inc" data-id="${item.id}" aria-label="Add one">+</button>
+              </div>
+              <button class="add-btn${qty > 0 ? ' in-cart' : ''}" data-id="${item.id}" id="addbtn-${item.id}" aria-label="Add ${item.name} to order">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                ${qty > 0 ? 'Added' : 'Add'}
+              </button>
+            </div>
+          </div>
+        </div>`;
+
+      grid.appendChild(card);
+    });
+  });
+}
+
+/* ── ADD / UPDATE CART ── */
+function updateCart(id, delta) {
+  /* Find the item across all categories */
+  let found = null;
+  Object.values(MENU).forEach(items => items.forEach(i => { if (i.id === id) found = i; }));
+  if (!found) return;
+
+  const prev = cart[id] ? cart[id].qty : 0;
+  const next  = Math.max(0, prev + delta);
+
+  if (next === 0) {
+    delete cart[id];
+  } else {
+    cart[id] = { item: found, qty: next };
+  }
+
+  /* Update card UI */
+  const qrow   = document.getElementById('qrow-' + id);
+  const qnum   = document.getElementById('qnum-' + id);
+  const addBtn = document.getElementById('addbtn-' + id);
+
+  if (qrow)   qrow.classList.toggle('show', next > 0);
+  if (qnum)   qnum.textContent = next;
+  if (addBtn) {
+    addBtn.classList.toggle('in-cart', next > 0);
+    addBtn.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>${next > 0 ? 'Added' : 'Add'}`;
+  }
+
+  /* Show toast only on first add */
+  if (delta > 0 && prev === 0) showToast(found.name + ' added to your order');
+
+  updateCartUI();
+}
+
+/* ── CART TOTALS & BADGE ── */
+function cartCount()  { return Object.values(cart).reduce((s,e) => s + e.qty, 0); }
+function cartTotal()  { return Object.values(cart).reduce((s,e) => s + e.item.price * e.qty, 0); }
+
+function updateCartUI() {
+  const count = cartCount();
+  const total = cartTotal();
+
+  /* Badge on cat-nav trigger */
+  const badge = document.getElementById('cart-badge');
+  badge.textContent = count;
+  badge.classList.toggle('show', count > 0);
+
+  /* Pill */
+  const pill = document.getElementById('cart-pill');
+  pill.classList.toggle('show', count > 0);
+  document.getElementById('pill-count').textContent = count;
+  document.getElementById('pill-total').textContent = 'KES ' + total.toLocaleString();
+
+  /* Drawer total */
+  document.getElementById('cart-total').innerHTML = `KES ${total.toLocaleString()} <small>incl. VAT</small>`;
+
+  /* Re-render drawer list */
+  renderCartItems();
+
+  /* Show/hide notes + footer */
+  const hasItems = count > 0;
+  document.getElementById('cart-notes-section').style.display = hasItems ? 'block' : 'none';
+  document.getElementById('cart-footer').style.display        = hasItems ? 'block' : 'none';
+}
+
+/* ── RENDER CART ITEMS INSIDE DRAWER ── */
+function renderCartItems() {
+  const list   = document.getElementById('cart-items-list');
+  const items  = Object.values(cart);
+
+  if (items.length === 0) {
+    list.innerHTML = `
+      <div class="cart-empty">
+        <div class="cart-empty-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </div>
+        <h3>Your order is empty</h3>
+        <p>Browse the menu and add dishes<br>to start your order.</p>
+      </div>`;
+    return;
+  }
+
+  list.innerHTML = items.map(({item, qty}) => `
+    <div class="cart-item" data-id="${item.id}">
+      <div class="ci-img">${makeSVG(item.svg, item.name)}</div>
+      <div class="ci-info">
+        <div class="ci-name">${item.name}</div>
+        <div class="ci-unit-price">KES ${item.price.toLocaleString()} each</div>
+        <div class="ci-controls">
+          <div class="ci-stepper">
+            <button class="ci-btn" data-action="dec" data-id="${item.id}" aria-label="Decrease quantity">−</button>
+            <div class="ci-qty">${qty}</div>
+            <button class="ci-btn" data-action="inc" data-id="${item.id}" aria-label="Increase quantity">+</button>
+          </div>
+          <div class="ci-subtotal">KES ${(item.price * qty).toLocaleString()}</div>
+        </div>
+      </div>
+      <button class="ci-remove" data-id="${item.id}" aria-label="Remove ${item.name}">
+        <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+      </button>
+    </div>
+  `).join('');
+}
+
+/* ── OPEN / CLOSE DRAWER ── */
+function openCart() {
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.body.classList.add('on-dark');
+}
+function closeCart() {
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  document.body.classList.remove('on-dark');
+}
+
+/* ── WHATSAPP CHECKOUT ── */
+function buildWAMessage() {
+  const name   = document.getElementById('field-name').value.trim() || 'Guest';
+  const room   = document.getElementById('field-room').value.trim() || 'Not specified';
+  const notes  = document.getElementById('field-notes').value.trim();
+  const items  = Object.values(cart);
+  const total  = cartTotal();
+
+  const WHATSAPP_NUMBER = '254700000000'; /* ← Replace with real number */
+
+  const lines = [
+    '🏞️ *Rocky River Resort — Room Service Order*',
+    '',
+    `*Guest:* ${name}`,
+    `*Room / Table:* ${room}`,
+    '',
+    '*Order:*',
+    ...items.map(({item,qty}) => `  • ${item.name} × ${qty}  —  KES ${(item.price*qty).toLocaleString()}`),
+    '',
+    `*Total: KES ${total.toLocaleString()}*`,
+    notes ? `*Special requests:* ${notes}` : null,
+    '',
+    '_Sent via Rocky River Resort website_',
+    '_Where Serenity Meets the River_ 🌿',
+  ].filter(l => l !== null).join('\n');
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
+}
+
+/* ── TOAST ── */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+/* ── CATEGORY FILTER ── */
+function filterCategory(cat) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === cat));
+  const sections = document.querySelectorAll('.menu-category');
+  sections.forEach(sec => {
+    if (cat === 'all') {
+      sec.style.display = 'block';
+    } else {
+      sec.style.display = sec.dataset.section === cat ? 'block' : 'none';
+    }
+  });
+  /* Scroll to the section if filtering to a specific category */
+  if (cat !== 'all') {
+    const target = document.getElementById('sec-' + cat);
+    if (target) setTimeout(() => target.scrollIntoView({behavior:'smooth', block:'start'}), 50);
+  }
+}
+
+/* ── EVENT DELEGATION ── */
+document.addEventListener('click', e => {
+  /* Add button */
+  const addBtn = e.target.closest('.add-btn');
+  if (addBtn) { updateCart(addBtn.dataset.id, 1); return; }
+
+  /* Inline qty stepper on card */
+  const qtyBtn = e.target.closest('.qty-btn');
+  if (qtyBtn) {
+    const delta = qtyBtn.dataset.action === 'inc' ? 1 : -1;
+    updateCart(qtyBtn.dataset.id, delta);
+    return;
+  }
+
+  /* Drawer qty stepper */
+  const ciBtn = e.target.closest('.ci-btn');
+  if (ciBtn) {
+    const delta = ciBtn.dataset.action === 'inc' ? 1 : -1;
+    updateCart(ciBtn.dataset.id, delta);
+    return;
+  }
+
+  /* Remove button in drawer */
+  const removeBtn = e.target.closest('.ci-remove');
+  if (removeBtn) {
+    const id = removeBtn.dataset.id;
+    if (cart[id]) updateCart(id, -cart[id].qty);
+    return;
+  }
+
+  /* Category tabs */
+  const catTab = e.target.closest('.cat-tab');
+  if (catTab) { filterCategory(catTab.dataset.cat); return; }
+
+  /* Cart triggers */
+  if (e.target.closest('#cart-btn') || e.target.closest('#cart-pill')) { openCart(); return; }
+  if (e.target.closest('#cart-close'))  { closeCart(); return; }
+  if (e.target.closest('#cart-overlay')) { closeCart(); return; }
+
+  /* WhatsApp button */
+  if (e.target.closest('#wa-btn')) {
+    const name = document.getElementById('field-name').value.trim();
+    const room = document.getElementById('field-room').value.trim();
+    if (!name) { showToast('Please enter your name'); document.getElementById('field-name').focus(); return; }
+    if (!room) { showToast('Please enter your room or table number'); document.getElementById('field-room').focus(); return; }
+    if (cartCount() === 0) { showToast('Your order is empty'); return; }
+    window.open(buildWAMessage(), '_blank');
+    return;
+  }
+});
+
+/* ── NAV SCROLL ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 70);
+});
+
+/* ── CURSOR ── */
+const cur = document.getElementById('cursor'), trail = document.getElementById('cursor-trail');
+let mx = 0, my = 0, tx = 0, ty = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx+'px'; cur.style.top = my+'px'; });
+(function loop() { tx += (mx-tx)*.1; ty += (my-ty)*.1; trail.style.left = tx+'px'; trail.style.top = ty+'px'; requestAnimationFrame(loop); })();
+document.querySelectorAll('a,button,.menu-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.style.width='22px'; cur.style.height='22px'; trail.style.width='58px'; trail.style.height='58px'; });
+  el.addEventListener('mouseleave', () => { cur.style.width='10px'; cur.style.height='10px'; trail.style.width='36px'; trail.style.height='36px'; });
+});
+
+/* ── REVEAL ON SCROLL ── */
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* ── INIT ── */
+renderAll();
+updateCartUI();
+</script>
+</body>
+</html>

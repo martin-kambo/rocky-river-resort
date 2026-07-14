@@ -1,0 +1,94 @@
+{
+  "nav": {
+    "home":           "Nyumbani",
+    "accommodations": "Malazi",
+    "amenities":      "Huduma",
+    "experiences":    "Matukio",
+    "gallery":        "Picha",
+    "about":          "Kuhusu",
+    "contact":        "Wasiliana",
+    "blog":           "Blogu",
+    "book":           "Weka Nafasi",
+    "login":          "Ingia",
+    "logout":         "Toka",
+    "myBookings":     "Mapangaji Yangu",
+    "profile":        "Wasifu"
+  },
+  "hero": {
+    "headline":    "Kando ya Mto Athi",
+    "subheadline": "Mapumziko ya kifahari katikati ya Thika Mashariki, Kenya",
+    "cta":         "Hifadhi Nafasi Yako",
+    "scrollDown":  "Gundua Zaidi"
+  },
+  "booking": {
+    "checkIn":       "Tarehe ya Kuwasili",
+    "checkOut":      "Tarehe ya Kuondoka",
+    "guests":        "Wageni",
+    "adults":        "Watu Wazima",
+    "children":      "Watoto",
+    "searchRooms":   "Tafuta Vyumba",
+    "available":     "Inapatikana",
+    "unavailable":   "Haipatikani",
+    "perNight":      "kwa usiku",
+    "total":         "Jumla",
+    "subtotal":      "Jumla ndogo",
+    "vat":           "VAT (16%)",
+    "nights":        "{count, plural, one {usiku #} other {usiku #}}",
+    "bookNow":       "Weka Nafasi",
+    "confirmBooking":"Thibitisha Uhifadhi",
+    "specialRequests":"Maombi maalum (si lazima)"
+  },
+  "rooms": {
+    "viewDetails":   "Tazama Maelezo",
+    "maxOccupancy":  "Hadi wageni {count}",
+    "size":          "{size}m²",
+    "amenities":     "Huduma",
+    "availability":  "Angalia Upatikanaji",
+    "from":          "Kuanzia"
+  },
+  "auth": {
+    "email":           "Anwani ya barua pepe",
+    "password":        "Nywila",
+    "firstName":       "Jina la kwanza",
+    "lastName":        "Jina la mwisho",
+    "phone":           "Namba ya simu (si lazima)",
+    "signIn":          "Ingia",
+    "signUp":          "Fungua akaunti",
+    "forgotPassword":  "Umesahau nywila?",
+    "resetPassword":   "Weka upya nywila",
+    "sendResetLink":   "Tuma kiungo cha kuweka upya",
+    "noAccount":       "Huna akaunti?",
+    "hasAccount":      "Una akaunti tayari?",
+    "orContinueWith":  "au endelea na"
+  },
+  "common": {
+    "loading":     "Inapakia…",
+    "error":       "Hitilafu imetokea",
+    "retry":       "Jaribu tena",
+    "cancel":      "Ghairi",
+    "confirm":     "Thibitisha",
+    "save":        "Hifadhi",
+    "back":        "Rudi",
+    "next":        "Ifuatayo",
+    "close":       "Funga",
+    "learnMore":   "Jifunze zaidi",
+    "viewAll":     "Tazama yote",
+    "required":    "Inahitajika",
+    "kes":         "KES",
+    "usd":         "USD"
+  },
+  "footer": {
+    "tagline":     "Mapumziko ya kifahari kando ya Mto Athi nchini Kenya",
+    "contact":     "Wasiliana",
+    "address":     "Thika Mashariki, Kaunti ya Kiambu, Kenya",
+    "phone":       "+254 700 000 000",
+    "email":       "hello@rockyriverresort.co.ke",
+    "copyright":   "© {year} Rocky River Resort. Haki zote zimehifadhiwa.",
+    "privacy":     "Sera ya Faragha",
+    "terms":       "Masharti ya Huduma"
+  },
+  "meta": {
+    "title":       "Rocky River Resort — Thika Mashariki, Kenya",
+    "description": "Mapumziko ya kifahari kando ya Mto Athi. Vyumba vya kifahari, chakula bora, na uzoefu wa Kikenya."
+  }
+}
