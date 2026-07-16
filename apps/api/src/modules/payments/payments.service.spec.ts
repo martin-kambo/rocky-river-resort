@@ -11,7 +11,7 @@ const mockBooking = {
   totalKes: 56000, totalUsd: 430,
 }
 
-const mockPrisma: any = {
+const mockPrisma = {
   booking:  { findUniqueOrThrow: jest.fn().mockResolvedValue(mockBooking), update: jest.fn() },
   payment:  { create: jest.fn(), findFirst: jest.fn(), updateMany: jest.fn() },
   $transaction: jest.fn(),
@@ -99,7 +99,7 @@ describe('PaymentsService', () => {
       mockStripe.constructWebhookEvent.mockReturnValue({
         type: 'payment_intent.succeeded', data: { object: { id: 'pi_test' } },
       })
-      mockPrisma.$transaction.mockImplementation(async (fn: any) => fn(mockPrisma))
+      mockPrisma.$transaction.mockImplementation (async (fn: (tx: typeof mockPrisma) => Promise<unknown>) => fn(mockPrisma),)
       mockPrisma.payment.findFirst.mockResolvedValue({ id: 'pay-1', bookingId: 'booking-1' })
       mockPrisma.payment.updateMany.mockResolvedValue({ count: 1 })
       mockPrisma.booking.update.mockResolvedValue({})
