@@ -1,7 +1,6 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": ["jest", "node"],
+    "types": ["node"],
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
@@ -16,18 +15,12 @@
     "skipLibCheck": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "exclude": ["node_modules", "test", "dist", "**/*spec.ts", "**/*.test.ts"],
-    "include": [
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ],
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@rrr/types": ["../../packages/types/src"],
       "@rrr/utils": ["../../packages/utils/src"]
-    },
-    
+    }
   }
 }
