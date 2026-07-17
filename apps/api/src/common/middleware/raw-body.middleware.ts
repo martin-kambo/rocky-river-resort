@@ -6,8 +6,8 @@ import * as express from 'express'
 export class RawBodyMiddleware implements NestMiddleware {
   use(req: Request & { rawBody?: Buffer }, res: Response, next: NextFunction) {
     express.json({
-      verify: (req2: any, _res, buf) => {
-        req2.rawBody = buf
+      verify: (req2: any, _res: Response, buf: Buffer) => {
+        (req2 as any).rawBody = buf
       },
     })(req, res, next)
   }
