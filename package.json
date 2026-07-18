@@ -7,19 +7,22 @@
     "packages/*"
   ],
   "scripts": {
-    "dev":         "concurrently \"npm run dev -w apps/api\" \"npm run dev -w apps/web\"",
-    "build":       "npm run build -w packages/types && npm run build -w packages/utils && npm run build -w apps/api && npm run build -w apps/web",
-    "lint":        "npm run lint --workspaces --if-present",
-    "test":        "npm run test --workspaces --if-present",
-    "db:migrate":  "npm run db:migrate -w apps/api",
-    "db:seed":     "npm run db:seed    -w apps/api",
-    "db:studio":   "npm run db:studio  -w apps/api"
+    "dev": "concurrently \"npm run dev -w apps/api\" \"npm run dev -w apps/web\"",
+    "build": "npm run build -w packages/types && npm run build -w packages/utils && npm run build -w apps/api && npm run build -w apps/web",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "db:migrate": "npm run db:migrate -w apps/api",
+    "db:seed": "npm run db:seed    -w apps/api",
+    "db:studio": "npm run db:studio  -w apps/api"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "typescript":   "^5.4.5"
+    "typescript": "^5.4.5"
   },
   "overrides": {
-     "rxjs": "^7.8.1"
-   }
+    "rxjs": "^7.8.1"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.3.0"
+  }
 }
