@@ -2,11 +2,12 @@ import type { Metadata }  from 'next'
 import Image              from 'next/image'
 import { notFound }       from 'next/navigation'
 import { getLocale }      from 'next-intl/server'
-import { apiClient }      from '@/lib/api-client'
-import { formatKes }      from '@/lib/utils'
-import { AmenityIcon }    from '@/components/rooms/AmenityIcon'
-import { BookingWidget }  from '@/components/booking/BookingWidget'
-import { CtaBanner }      from '@/components/sections/CtaBanner'
+import { AmenityIcon }   from '@/components/rooms/AmenityIcon'
+import { BookingWidget } from '@/components/booking/BookingWidget'
+import { CtaBanner }     from '@/components/sections/CtaBanner'
+
+import { apiClient }     from '@/lib/api-client'
+import { formatKes }     from '@/lib/utils'
 import type { RoomType }  from '@rrr/types'
 
 interface Props { params: { slug: string; locale: string } }

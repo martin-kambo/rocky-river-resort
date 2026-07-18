@@ -2,9 +2,9 @@
 import Link              from 'next/link'
 import Image             from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
-import { Button }        from '@/components/ui/button'
-import { Badge }         from '@/components/ui/badge'
-import { formatKes }     from '@/lib/utils'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { formatKes } from '@/lib/utils'
 import type { RoomType } from '@rrr/types'
 
 interface Props {
