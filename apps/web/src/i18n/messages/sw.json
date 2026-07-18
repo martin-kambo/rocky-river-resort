@@ -44,7 +44,8 @@
     "size":          "{size}m²",
     "amenities":     "Huduma",
     "availability":  "Angalia Upatikanaji",
-    "from":          "Kuanzia"
+    "from":          "Kuanzia",
+    "perNight":      "kwa usiku"
   },
   "auth": {
     "email":           "Anwani ya barua pepe",

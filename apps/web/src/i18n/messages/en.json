@@ -44,7 +44,8 @@
     "size":          "{size}m²",
     "amenities":     "Amenities",
     "availability":  "Check Availability",
-    "from":          "From"
+    "from":          "From",
+    "perNight":      "per night"
   },
   "auth": {
     "email":           "Email address",
