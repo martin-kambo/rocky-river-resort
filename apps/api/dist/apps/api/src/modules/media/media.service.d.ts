@@ -5,16 +5,7 @@ export declare class MediaService {
     private readonly media;
     constructor(prisma: PrismaService, media: MediaProvider);
     uploadRoomImage(roomTypeSlug: string, buffer: Buffer, filename: string): Promise<{
-        image: {
-            id: string;
-            createdAt: Date;
-            sortOrder: number;
-            roomTypeId: string;
-            url: string;
-            altEn: string;
-            altSw: string;
-            isHero: boolean;
-        };
+        image: any;
         cdn: {
             original: string;
             hero: string;

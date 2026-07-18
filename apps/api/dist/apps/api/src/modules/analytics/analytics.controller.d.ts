@@ -3,8 +3,8 @@ export declare class AnalyticsController {
     private readonly analytics;
     constructor(analytics: AnalyticsService);
     stats(): Promise<{
-        monthBookings: number;
-        occupiedTonight: number;
+        monthBookings: any;
+        occupiedTonight: any;
         monthRevenueKes: number;
         occupancyRate: number;
     }>;
@@ -20,12 +20,8 @@ export declare class AnalyticsController {
             month: number;
             year: number;
             revenueKes: number;
-            payments: number;
+            payments: any;
         }[];
     }>;
-    topRooms(): Promise<{
-        roomType: any;
-        bookings: any;
-        revenueKes: number;
-    }[]>;
+    topRooms(): Promise<any>;
 }
