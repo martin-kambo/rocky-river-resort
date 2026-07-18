@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { CtaBanner }     from '../../../../components/sections/CtaBanner'
+import { CtaBanner }     from '@/components/sections/CtaBanner'
 
 export const metadata: Metadata = {
   title:       'About Us — Rocky River Resort',

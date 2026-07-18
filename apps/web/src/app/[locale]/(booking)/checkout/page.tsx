@@ -2,10 +2,10 @@
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useLocale }                  from 'next-intl'
 import { useState }                   from 'react'
-import { apiClient, getApiError }     from '../../../../lib/api-client'
-import { Button }                     from '../../../../components/ui/button'
-import { Input }                      from '../../../../components/ui/input'
-import { formatKes }                  from '../../../../lib/utils'
+import { apiClient, getApiError }     from '@/lib/api-client'
+import { Button }                     from '@/components/ui/button'
+import { Input }                      from '@/components/ui/input'
+import { formatKes }                  from '@/lib/utils'
 
 export default function CheckoutPage() {
   const sp        = useSearchParams()

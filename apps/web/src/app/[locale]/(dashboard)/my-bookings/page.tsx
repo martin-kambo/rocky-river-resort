@@ -5,9 +5,9 @@ import { useRouter }       from 'next/navigation'
 import { useLocale }       from 'next-intl'
 import { useAuth }         from '../../../../hooks/useAuth'
 import { useMyBookings, useCancelBooking } from '../../../../hooks/useBookings'
-import { Badge }           from '../../../../components/ui/badge'
-import { Button }          from '../../../../components/ui/button'
-import { formatKes, formatDate } from '../../../../lib/utils'
+import { Badge }           from '@/components/ui/badge'
+import { Button }          from '@/components/ui/button'
+import { formatKes, formatDate } from '@/lib/utils'
 
 const statusVariant: Record<string, 'default' | 'success' | 'warning' | 'error' | 'secondary'> = {
   PENDING:   'warning',

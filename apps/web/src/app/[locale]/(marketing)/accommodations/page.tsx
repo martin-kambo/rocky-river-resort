@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import { RoomCard }      from '../../../../components/rooms/RoomCard'
-import { CtaBanner }     from '../../../../components/sections/CtaBanner'
-import { apiClient }     from '../../../../lib/api-client'
+import { RoomCard }      from '@/components/rooms/RoomCard'
+import { CtaBanner }     from '@/components/sections/CtaBanner'
+import { apiClient }     from '@/lib/api-client'
 import type { RoomType } from '@rrr/types'
 
 export const metadata: Metadata = {

@@ -3,9 +3,9 @@ import Link                           from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { useState }                   from 'react'
-import { apiClient, getApiError }     from '../../../../lib/api-client'
-import { Input }                      from '../../../../components/ui/input'
-import { Button }                     from '../../../../components/ui/button'
+import { apiClient, getApiError }     from '@/lib/api-client'
+import { Input }                      from '@/components/ui/input'
+import { Button }                     from '@/components/ui/button'
 
 export default function ResetPasswordPage() {
   const t        = useTranslations('auth')

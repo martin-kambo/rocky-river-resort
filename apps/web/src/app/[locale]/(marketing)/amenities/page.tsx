@@ -1,6 +1,6 @@
 import type { Metadata }     from 'next'
-import { AmenitiesSection }  from '../../../../components/sections/AmenitiesSection'
-import { CtaBanner }         from '../../../../components/sections/CtaBanner'
+import { AmenitiesSection }  from '@/components/sections/AmenitiesSection'
+import { CtaBanner }         from '@/components/sections/CtaBanner'
 
 export const metadata: Metadata = {
   title:       'Amenities — Rocky River Resort',

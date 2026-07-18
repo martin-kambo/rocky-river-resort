@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 import { useRouter }           from 'next/navigation'
 import { useLocale }           from 'next-intl'
 import { useAuth }             from '../../../../hooks/useAuth'
-import { Input }               from '../../../../components/ui/input'
-import { Button }              from '../../../../components/ui/button'
-import { apiClient, getApiError } from '../../../../lib/api-client'
+import { Input }               from '@/components/ui/input'
+import { Button }              from '@/components/ui/button'
+import { apiClient, getApiError } from '@/lib/api-client'
 import { useAuthStore }        from '../../../../stores/auth.store'
 
 export default function ProfilePage() {

@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import { useRouter }           from 'next/navigation'
 import { useLocale }           from 'next-intl'
 import { useAuth }             from '../../../../hooks/useAuth'
-import { apiClient }           from '../../../../lib/api-client'
-import { formatKes }           from '../../../../lib/utils'
-import { Badge }               from '../../../../components/ui/badge'
-import { Button }              from '../../../../components/ui/button'
+import { apiClient }           from '@/lib/api-client'
+import { formatKes }           from '@/lib/utils'
+import { Badge }               from '@/components/ui/badge'
+import { Button }              from '@/components/ui/button'
 
 interface Stats {
   monthBookings:   number

@@ -6,12 +6,12 @@ import { useRooms }                   from '../../../../hooks/useRooms'
 import { useAuth }                    from '../../../../hooks/useAuth'
 import { useAvailability }            from '../../../../hooks/useAvailability'
 import { useBookingStore }            from '../../../../stores/booking.store'
-import { RoomCard }                   from '../../../../components/rooms/RoomCard'
-import { BookingWidget }              from '../../../../components/booking/BookingWidget'
-import { apiClient }                  from '../../../../lib/api-client'
-import { getApiError }                from '../../../../lib/api-client'
-import { Button }                     from '../../../../components/ui/button'
-import { formatKes }                  from '../../../../lib/utils'
+import { RoomCard }                   from '@/components/rooms/RoomCard'
+import { BookingWidget }              from '@/components/booking/BookingWidget'
+import { apiClient }                  from '@/lib/api-client'
+import { getApiError }                from '@/lib/api-client'
+import { Button }                     from '@/components/ui/button'
+import { formatKes }                  from '@/lib/utils'
 
 export default function BookPage() {
   const sp        = useSearchParams()

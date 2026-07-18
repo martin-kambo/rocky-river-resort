@@ -4,9 +4,9 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { useState }                from 'react'
 import { useAuth }                 from '../../../../hooks/useAuth'
-import { Input }                   from '../../../../components/ui/input'
-import { Button }                  from '../../../../components/ui/button'
-import { getApiError }             from '../../../../lib/api-client'
+import { Input }                   from '@/components/ui/input'
+import { Button }                  from '@/components/ui/button'
+import { getApiError }             from '@/lib/api-client'
 
 export default function LoginPage() {
   const t        = useTranslations('auth')

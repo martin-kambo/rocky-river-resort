@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import { notFound }      from 'next/navigation'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
-import { routing }       from '../../i18n/routing'
-import { Navbar }        from '../../components/layout/Navbar'
-import { Footer }        from '../../components/layout/Footer'
-import { QueryProvider } from '../../components/shared/QueryProvider'
-import { Analytics }     from '../../components/shared/Analytics'
-import { Toaster }       from '../../components/ui/toaster'
-import '../../styles/globals.css'
+import { routing }       from '@/i18n/routing'
+import { Navbar }        from '@/components/layout/Navbar'
+import { Footer }        from '@/components/layout/Footer'
+import { QueryProvider } from '@/components/shared/QueryProvider'
+import { Analytics }     from '@/components/shared/Analytics'
+import { Toaster }       from '@/components/ui/toaster'
+import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title:       'Rocky River Resort — Thika East, Kenya',

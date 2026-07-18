@@ -2,8 +2,8 @@
 import Link              from 'next/link'
 import { useLocale }     from 'next-intl'
 import { useEffect, useState } from 'react'
-import { apiClient }     from '../../../../../lib/api-client'
-import { formatKes, formatDate } from '../../../../../lib/utils'
+import { apiClient }     from '@/lib/api-client'
+import { formatKes, formatDate } from '@/lib/utils'
 import type { Booking }  from '@rrr/types'
 
 interface Props { params: { ref: string } }

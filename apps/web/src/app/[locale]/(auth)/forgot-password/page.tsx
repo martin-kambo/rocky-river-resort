@@ -2,9 +2,9 @@
 import Link                           from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 import { useState }                   from 'react'
-import { apiClient, getApiError }     from '../../../../lib/api-client'
-import { Input }                      from '../../../../components/ui/input'
-import { Button }                     from '../../../../components/ui/button'
+import { apiClient, getApiError }     from '@/lib/api-client'
+import { Input }                      from '@/components/ui/input'
+import { Button }                     from '@/components/ui/button'
 
 export default function ForgotPasswordPage() {
   const t      = useTranslations('auth')

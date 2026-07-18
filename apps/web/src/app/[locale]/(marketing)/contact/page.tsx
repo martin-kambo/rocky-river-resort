@@ -1,9 +1,9 @@
 'use client'
 import { useState }  from 'react'
-import { Input }     from '../../../../components/ui/input'
-import { Button }    from '../../../../components/ui/button'
-import { apiClient } from '../../../../lib/api-client'
-import { getApiError } from '../../../../lib/api-client'
+import { Input }     from '@/components/ui/input'
+import { Button }    from '@/components/ui/button'
+import { apiClient } from '@/lib/api-client'
+import { getApiError } from '@/lib/api-client'
 
 export default function ContactPage() {
   const [form,    setForm]    = useState({ name: '', email: '', phone: '', message: '' })

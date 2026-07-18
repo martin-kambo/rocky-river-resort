@@ -1,7 +1,7 @@
 'use client'
 import { useAvailability } from '../../hooks/useAvailability'
 import { Badge }           from '../ui/badge'
-import { formatKes }       from '../../lib/utils'
+import { formatKes }       from '@/lib/utils'
 
 interface Props {
   roomTypeSlug: string
