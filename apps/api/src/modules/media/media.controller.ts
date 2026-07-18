@@ -57,7 +57,7 @@ export class MediaController {
     return this.media.uploadRoomImage(slug, file.buffer, file.originalname)
   }
 
-  @Delete(':publicId(*)')
+ @Delete('*publicId')
   @ApiOperation({ summary: 'Delete a media file by Cloudinary public ID (admin)' })
   deleteMedia(@Param('publicId') publicId: string) {
     return this.media.delete(publicId)
