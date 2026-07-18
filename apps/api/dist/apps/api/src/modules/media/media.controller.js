@@ -67,7 +67,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MediaController.prototype, "uploadRoomImage", null);
 __decorate([
-    (0, common_1.Delete)(':publicId(*)'),
+    (0, common_1.Delete)('*publicId'),
     (0, swagger_1.ApiOperation)({ summary: 'Delete a media file by Cloudinary public ID (admin)' }),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('publicId')),
