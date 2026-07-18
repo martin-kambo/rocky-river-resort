@@ -99,7 +99,7 @@ __decorate([
 __decorate([
     (0, common_1.Patch)('bookings/:id/status'),
     (0, swagger_1.ApiOperation)({ summary: 'Update booking status (admin)' }),
-    openapi.ApiResponse({ status: 200, type: Object }),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -109,7 +109,7 @@ __decorate([
 __decorate([
     (0, common_1.Get)('rooms'),
     (0, swagger_1.ApiOperation)({ summary: 'List all rooms with status (admin)' }),
-    openapi.ApiResponse({ status: 200, type: Object }),
+    openapi.ApiResponse({ status: 200, type: [Object] }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
@@ -117,7 +117,7 @@ __decorate([
 __decorate([
     (0, common_1.Patch)('rooms/:id/status'),
     (0, swagger_1.ApiOperation)({ summary: 'Update room status (admin)' }),
-    openapi.ApiResponse({ status: 200, type: Object }),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -149,7 +149,7 @@ __decorate([
 __decorate([
     (0, common_1.Get)('seasonal-pricing'),
     (0, swagger_1.ApiOperation)({ summary: 'List all seasonal pricing rules' }),
-    openapi.ApiResponse({ status: 200, type: Object }),
+    openapi.ApiResponse({ status: 200, type: [Object] }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
@@ -166,7 +166,7 @@ __decorate([
 __decorate([
     (0, common_1.Delete)('seasonal-pricing/:id'),
     (0, swagger_1.ApiOperation)({ summary: 'Delete a seasonal pricing rule' }),
-    openapi.ApiResponse({ status: 200, type: Object }),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

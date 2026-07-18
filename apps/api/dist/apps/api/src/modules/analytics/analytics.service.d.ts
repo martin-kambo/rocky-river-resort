@@ -3,8 +3,8 @@ export declare class AnalyticsService {
     private readonly prisma;
     constructor(prisma: PrismaService);
     getDashboardStats(): Promise<{
-        monthBookings: any;
-        occupiedTonight: any;
+        monthBookings: number;
+        occupiedTonight: number;
         monthRevenueKes: number;
         occupancyRate: number;
     }>;
@@ -20,8 +20,12 @@ export declare class AnalyticsService {
             month: number;
             year: number;
             revenueKes: number;
-            payments: any;
+            payments: number;
         }[];
     }>;
-    getTopRoomTypes(): Promise<any>;
+    getTopRoomTypes(): Promise<{
+        roomType: any;
+        bookings: any;
+        revenueKes: number;
+    }[]>;
 }
