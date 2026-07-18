@@ -26,11 +26,16 @@ interface Props {
   params:   { locale: string }
 }
 
-export default function LocaleLayout({ children, params: { locale } }: Props) {
-  if (!routing.locales.includes(locale as any)) notFound()
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const messages = useMessages()
+}
 
   return (
     <html lang={locale} suppressHydrationWarning>
