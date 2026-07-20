@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 'use client'
 import { useTranslations } from 'next-intl'
 import { BookingWidget }   from '../booking/BookingWidget'
@@ -7,11 +9,22 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-forest via-forest/90 to-earth" />
-      <div className="absolute inset-0 opacity-20"
-        style={{ backgroundImage: 'url("/hero-pattern.svg")', backgroundSize: '60px' }} />
+      {/* Hero Image */}
+<div className="absolute inset-0">
+  <Image
+    src="/images/hero.jpg"
+    alt="Rocky River Resort overlooking the Athi River"
+    fill
+    priority
+    sizes="100vw"
+    className="object-cover"
+  />
+</div>
+{/* Dark overlay for text readability */}
+<div className="absolute inset-0 bg-black/50" />
 
+{/* Subtle gradient to blend into next section */}
+<div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-forest/70" />
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="max-w-2xl">
