@@ -13,7 +13,7 @@ export function HeroSection() {
       {/* Hero Image */}
 <div className="absolute inset-0">
   <Image
-    src="/images/hero.jpg"
+    src="/images/gallery-1.jpg"
     alt="Rocky River Resort overlooking the Athi River"
     fill
     priority
