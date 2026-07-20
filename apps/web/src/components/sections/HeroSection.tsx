@@ -1,6 +1,7 @@
-import Image from 'next/image'
 
 'use client'
+
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { BookingWidget }   from '../booking/BookingWidget'
 
