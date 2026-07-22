@@ -36,3 +36,4 @@ Thumbs.db
 # Test coverage
 coverage/
 # Allow compiled API dist for Render deployment
+.env.local

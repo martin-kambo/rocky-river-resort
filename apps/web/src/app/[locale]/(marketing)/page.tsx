@@ -4,6 +4,7 @@ import { IntroSection }          from '@/components/sections/IntroSection'
 import { RoomsSection }          from '@/components/sections/RoomsSection'
 import { AmenitiesSection }      from '@/components/sections/AmenitiesSection'
 import { ExperiencesSection }    from '@/components/sections/ExperiencesSection'
+import { RiverSceneSection }     from 'components/sections/RiverSceneSection'
 import { TestimonialsSection }   from '@/components/sections/TestimonialsSection'
 import { CtaBanner }             from '@/components/sections/CtaBanner'
 
@@ -21,6 +22,7 @@ export default function HomePage() {
       <AmenitiesSection />
       <ExperiencesSection />
       <TestimonialsSection />
+      <RiverSceneSection />
       <CtaBanner />
     </>
   )
