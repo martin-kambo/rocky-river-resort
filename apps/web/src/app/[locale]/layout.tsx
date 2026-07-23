@@ -47,11 +47,13 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <QueryProvider>
+            <>
             <Navbar />
             <main className="min-h-screen pt-16">
               {children}
             </main>
             <Footer />
+            </>
             <Toaster />
             <Analytics />
           </QueryProvider>
