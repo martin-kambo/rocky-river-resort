@@ -9,12 +9,19 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
  */
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: 'res.cloudinary.com' },
-      { protocol: 'https', hostname: 'images.unsplash.com' },
-    ],
-    formats: ['image/avif', 'image/webp', ],
-  },
+  unoptimized: true,
+
+  remotePatterns: [
+    {
+      protocol: 'https',
+      hostname: 'res.cloudinary.com',
+    },
+    {
+      protocol: 'https',
+      hostname: 'images.unsplash.com',
+    },
+  ],
+},
   async headers() {
     return [
       {
